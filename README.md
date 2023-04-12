@@ -24,11 +24,11 @@ hi, i'm Jai Kushwaha, a passionate self-taught data science ML/AI enthusiast
 
 Here are some ideas to get you started:
 
-🔭 I’m currently working on ... Predicting Delinquency and Loan Default in MSME sector of a PSU Bank
-🌱 I’m currently learning ... AWS services and sagemaker
+🔭 I’m currently working on ... Predicting Delinquency and Loan Default in MSME sector of a PSU Bank.\
+🌱 I’m currently learning ... AWS services and sagemaker.\
 👯 I’m looking to collaborate on ... Data Models Interpretibility and Business Understanding effiective solutions.
-📫 How to reach me: ... https://www.linkedin.com/in/jai-kushwaha/
-⚡ Fun fact: ... I love to experiment with cooking and learning new Guitar pluckings.
+📫 How to reach me: ... https://www.linkedin.com/in/jai-kushwaha/ .\ 
+⚡ Fun fact: ... I love to experiment with cooking and learning new Guitar pluckings.\
 
 ## Latest blog posts
 
