@@ -1,228 +1,1156 @@
 <!DOCTYPE HTML>
-<!--
-	Prologue by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+
+<html lang="">
 	<head>
 		<title>Jai's Profile</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- Add Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+		<!-- Add AOS library for scroll animations -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+		<!-- Add custom CSS -->
+		<style>
+			:root {
+				--primary-color: #4a89dc;
+				--secondary-color: #3d4451;
+				--accent-color: #f9a826;
+				--light-bg: #f7f7f7;
+				--dark-bg: #2c3e50;
+			}
+
+			body {
+				font-family: 'Poppins', sans-serif;
+			}
+
+			/* Modern button styling */
+
+			button {
+			 position: relative;
+			 display: inline-block;
+			 cursor: pointer;
+			 outline: none;
+			 border: 0;
+			 vertical-align: middle;
+			 text-decoration: none;
+			 background: transparent;
+			 padding: 0;
+			 font-size: inherit;
+			 font-family: inherit;
+			}
+
+			button.learn-more {
+			 width: 12rem;
+			 height: auto;
+			}
+
+			button.learn-more .circle {
+			 transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+			 position: relative;
+			 display: block;
+			 margin: 0;
+			 width: 3rem;
+			 height: 3rem;
+			 background: #282936;
+			 border-radius: 1.625rem;
+			}
+
+			button.learn-more .circle .icon {
+			 transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+			 position: absolute;
+			 top: 0;
+			 bottom: 0;
+			 margin: auto;
+			 background: #fff;
+			}
+
+			button.learn-more .circle .icon.arrow {
+			 transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+			 left: 0.625rem;
+			 width: 1.125rem;
+			 height: 0.125rem;
+			 background: none;
+			}
+
+			button.learn-more .circle .icon.arrow::before {
+			 position: absolute;
+			 content: "";
+			 top: -0.29rem;
+			 right: 0.0625rem;
+			 width: 0.625rem;
+			 height: 0.625rem;
+			 border-top: 0.125rem solid #fff;
+			 border-right: 0.125rem solid #fff;
+			 transform: rotate(45deg);
+			}
+
+			button.learn-more .button-text {
+			 transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+			 position: absolute;
+			 top: 0;
+			 left: 0;
+			 right: 0;
+			 bottom: 0;
+			 padding: 0.75rem 0;
+			 margin: 0 0 0 1.85rem;
+			 color: #282936;
+			 font-weight: 700;
+			 line-height: 1.6;
+			 text-align: center;
+			 text-transform: uppercase;
+			}
+
+			button:hover .circle {
+			 width: 100%;
+			}
+
+			button:hover .circle .icon.arrow {
+			 background: #fff;
+			 transform: translate(1rem, 0);
+			}
+
+			button:hover .button-text {
+			 color: #fff;
+			}
+
+			/* Skill icons hover effect */
+			.skill-icon {
+				transition: all 0.3s ease;
+				filter: grayscale(40%);
+				margin: 10px;
+			}
+
+			.skill-icon:hover {
+				transform: translateY(-8px);
+				filter: grayscale(0%);
+			}
+
+			/* Portfolio items */
+			.portfolio-item {
+				border-radius: 10px;
+				overflow: hidden;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+				transition: all 0.3s ease;
+				margin-bottom: 2em;
+			}
+
+			.portfolio-item:hover {
+				transform: translateY(-10px);
+				box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+			}
+
+			.portfolio-item img {
+				transition: all 0.5s ease;
+			}
+
+			.portfolio-item:hover img {
+				transform: scale(1.05);
+			}
+
+			.portfolio-item header {
+				padding: 1em;
+			}
+
+			/* Section styling */
+			section {
+				padding: 5em 0;
+			}
+
+			/* Progress bars for skills */
+			.progress-container {
+				margin-bottom: 20px;
+			}
+
+			.progress-title {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 5px;
+			}
+
+			.progress-bar {
+				height: 6px;
+				background: #e9ecef;
+				border-radius: 3px;
+				overflow: hidden;
+			}
+
+			.progress-bar-fill {
+				height: 100%;
+				background: var(--primary-color);
+				border-radius: 3px;
+				transition: width 1.5s ease;
+			}
+
+			/* Circular nav indicator */
+			#nav ul li a.active:before {
+				content: '';
+				position: absolute;
+				left: -10px;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 8px;
+				height: 8px;
+				background: var(--accent-color);
+				border-radius: 50%;
+			}
+
+			/* Footer styling */
+			#footer {
+				background: var(--dark-bg);
+				color: white;
+				border-radius: 15px 15px 0 0;
+				margin-top: -15px;
+				position: relative;
+				padding: 2em;
+			}
+
+			/* Timeline styling */
+			.timeline {
+				position: relative;
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			.timeline::after {
+				content: '';
+				position: absolute;
+				width: 4px;
+				background-color: var(--primary-color);
+				top: 0;
+				bottom: 0;
+				left: 50%;
+				margin-left: -2px;
+			}
+
+			.timeline-container {
+				padding: 10px 40px;
+				position: relative;
+				background-color: inherit;
+				width: 50%;
+			}
+
+			.timeline-container.left {
+				left: 0;
+			}
+
+			.timeline-container.right {
+				left: 50%;
+			}
+
+			.timeline-content {
+				padding: 20px 30px;
+				background-color: white;
+				position: relative;
+				border-radius: 10px;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+			}
+
+			/* Testimonials section */
+			.testimonial {
+				background: white;
+				padding: 30px;
+				border-radius: 10px;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+				position: relative;
+			}
+
+			.testimonial-author {
+				display: flex;
+				align-items: center;
+				margin-top: 20px;
+			}
+
+			.testimonial-author img {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				margin-right: 15px;
+			}
+
+			/* Dark mode toggle */
+			.dark-mode-toggle {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				z-index: 1000;
+				background: #000000;
+				border: none;
+				border-radius: 50%;
+				width: 40px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+				cursor: pointer;
+			}
+
+			/* Header animation */
+			@keyframes gradient {
+				0% {background-position: 0% 50%;}
+				50% {background-position: 100% 50%;}
+				100% {background-position: 0% 50%;}
+			}
+
+			.animated-gradient {
+				background: linear-gradient(-45deg, #0072ff, #485c67, #0072ff, #83bfcb);
+				background-size: 400% 400%;
+				animation: gradient 15s ease infinite;
+				color: #1d4965;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
+		<!-- Dark mode toggle -->
+		<button class="dark-mode-toggle" id="darkModeToggle">
+			<i class="fas fa-moon"></i>
+		</button>
 
 		<!-- Header -->
-			<div id="header">
-
-				<div class="top">
-
-					<!-- Logo -->
-						<div id="logo">
-							<span class="image avatar48"><img src="images/Jai Photo.jpg" alt="" /></span>
-							<h1 id="title">Jai Kushwaha</h1>
-							<p>Senior Consultant Analytics</p>
-							<!--<p>Berlin, Germany<span class="label"></span></p>-->
-						</div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
-								<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
-								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
-								<li><a href="#footer" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
-							</ul>
-						</nav>
-
+		<div id="header">
+			<div class="top">
+				<!-- Logo -->
+				<div id="logo" data-aos="fade-right" data-aos-duration="1000">
+					<span class="image avatar48"><img src="images/Jai Photo.jpg" alt="" /></span>
+					<h1 id="title">Jai Kushwaha</h1>
+					<p>Senior Consultant</p>
 				</div>
 
-				<div class="bottom">
-
-					<!-- Social Icons -->
-						<ul class="icons">
-							<li><a href="https://github.com/jaikushwaha7 " class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="https://linkedin.com/in/jai-kushwaha" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
-							<li><a href="https://www.kaggle.com/jaikushwaha" class="icon brands fa-kaggle"><span class="label">Kaggle</span></a></li>
-							<li><a href="jaikushwaha7@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-							<li><a href="https://eportfolio.mygreatlearning.com/jai-kushwaha" class="fas fa-hand-pointer"><span class="label"></span></a></li>
-							<li><a href="https://goo.gl/maps/5zetnA2cGmjKAbHf8" class="icon solid fa-location-arrow"><span class="label">Berlin, Germany</span></a></li>
-							
-						</ul>
-
-				</div>
-
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+						<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
+						<li><a href="#skills" id="skills-link"><span class="icon solid fa-code">Skills</span></a></li>
+						<li><a href="#experience" id="experience-link"><span class="icon solid fa-briefcase">Experience</span></a></li>
+						<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+						<li><a href="#testimonials" id="testimonials-link"><span class="icon solid fa-comment">Testimonials</span></a></li>
+						<li><a href="#footer" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
+					</ul>
+				</nav>
 			</div>
 
+			<div class="bottom">
+				<!-- Social Icons -->
+				<ul class="icons">
+					<li><a href="https://github.com/jaikushwaha7" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					<li><a href="https://linkedin.com/in/jai-kushwaha" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
+					<li><a href="https://www.kaggle.com/jaikushwaha" class="icon brands fa-kaggle"><span class="label">Kaggle</span></a></li>
+					<li><a href="mailto:jaikushwaha7@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					<li><a href="https://eportfolio.mygreatlearning.com/jai-kushwaha" class="fas fa-hand-pointer"><span class="label"></span></a></li>
+					<li><a href="https://goo.gl/maps/5zetnA2cGmjKAbHf8" class="icon solid fa-location-arrow"><span class="label">Berlin, Germany</span></a></li>
+				</ul>
+			</div>
+		</div>
+
 		<!-- Main -->
-			<div id="main">
+		<div id="main">
+			<!-- Intro -->
+			<section id="top" class="one dark cover animated-gradient">
+				<div class="container">
+					<header data-aos="fade-up" data-aos-duration="1000">
+						<h2 class="alt">Hi! I'm <strong>Jai Kushwaha</strong>, an <a href="https://linkedin.com/in/jai-kushwaha">experienced professional</a> <br />
+						and a Data Science Enthusiast</h2>
+						<p id="typing-text" class="typing"></p>
 
-				<!-- Intro -->
-					<section id="top" class="one dark cover">
-						<div class="container">
+					</header>
 
-							<header>
-								<h2 class="alt">Hi! I'm <strong>Jai Kushwaha</strong>, an <a href="https://linkedin.com/in/jai-kushwaha">experienced professional</a> <br />
-								and a Data Science Enthusiast  </h2>
-								<p> "Learning data science is like going to the gym, you only benefit if you do it consistently."<br />
-								</p>
-							</header>
+					<footer data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+						<a href="#portfolio" class="neu-button">To Know More</a>
+					</footer>
+				</div>
+			</section>
 
-							<footer>
-								<a href="#portfolio" class="button scrolly">To Know More</a>
-							</footer>
+			<!-- Portfolio -->
+			<section id="portfolio" class="two">
+				<div class="container">
+					<header data-aos="fade-up">
+						<h2>Portfolio</h2>
+					</header>
 
+					<p data-aos="fade-up" data-aos-delay="200">A professional with 11 years of experience overall and 6 years of
+						experience in Data analysis, Data Visualization, and Machine
+						Learning in Credit Risk Analytics, with a background in
+						Statistics, analytical tools, Machine Learning, and Deep
+						Learning. 8 Machine learning models were successfully guided,
+						together with their Model Insights, Governance, Deep Impact
+						Analysis, Model KPIs, and Validation. Domain competence in
+						banking, finance, and insurance, as well as managing open
+						projects in the field of e-commerce. Well-versed in a variety
+						of programming languages, including Python, R, SQL, and SAS,
+						as well as big data products such as Teradata and Fizurre.</p>
+
+					<div class="row">
+						<div class="col-4 col-12-mobile" data-aos="fade-up" data-aos-delay="300">
+							<article class="portfolio-item">
+								<a href="https://github.com/jaikushwaha7/Capstone-Project-MSME-Advances-BABI.git" class="image fit"><img src="images/image1.png" alt="" /></a>
+								<header>
+									<h3>Predicting Delinquency and Loan default for MSME loan for PSU Bank using Advanced Machine Learning Techniques.</h3>
+									<a href="https://github.com/jaikushwaha7/Prediction_Delinquency_Paper_Published/blob/main/Samaroh_2021_paper_3.pdf" class="btn">Published Paper Link</a>
+								</header>
+							</article>
+							<article class="portfolio-item">
+								<a href="https://github.com/jaikushwaha7/Brand-Perception-Analytics.git" class="image fit"><img src="images/image3.jpg" alt="" /></a>
+								<header>
+									<h3>NLP and Brand perception analysis (Social media analytics - Text mining)</h3>
+								</header>
+							</article>
 						</div>
-					</section>
+						<div class="col-4 col-12-mobile" data-aos="fade-up" data-aos-delay="400">
+							<article class="portfolio-item">
+								<a href="https://github.com/jaikushwaha7/Sequence-Model---Trigger-Word-Detection.git" class="image fit"><img src="images/image4.jpg" alt="" /></a>
+								<header>
+									<h3>Deep Learning- Trigger Word Detection</h3>
+								</header>
+							</article>
+							<article class="portfolio-item">
+								<a href="https://github.com/jaikushwaha7/bostonhousepricing.git" class="image fit"><img src="images/image5.jpg" alt="" /></a>
+								<header>
+									<h3>Machine Learning Model Deployment in Heroku</h3>
+								</header>
+							</article>
+						</div>
+						<div class="col-4 col-12-mobile" data-aos="fade-up" data-aos-delay="500">
+							<article class="portfolio-item">
+								<a href="https://github.com/jaikushwaha7/Netflix-Description-of-Movies-and-TV-shows-analysis.git" class="image fit"><img src="images/image6.jpg" alt="" /></a>
+								<header>
+									<h3>Netflix-Description-of-Movies-and-TV-shows-analysis</h3>
+								</header>
+							</article>
+							<article class="portfolio-item">
+								<a href="https://github.com/jaikushwaha7/Time-Series-Forecasting.git" class="image fit"><img src="images/image7.jpg" alt="" /></a>
+								<header>
+									<h3>Time Series Forecasting</h3>
+								</header>
+							</article>
+						</div>
+					</div>
+				</div>
+			</section>
 
-				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container">
+			<!-- Skills Section -->
+			<section id="skills" class="two" style="background-color: var(--light-bg);">
+				<div class="container">
+					<header data-aos="fade-up">
+						<h2>Skills & Expertise</h2>
+					</header>
 
-							<header>
-								<h2>Portfolio</h2>
-							</header>
+					<div class="row">
+						<div class="col-6 col-12-mobile" data-aos="fade-right">
+							<h3>Technical Skills</h3>
 
-							<p>A professional with 11 years of experience overall and 6 years of 
-								experience in Data analysis, Data Visualization, and Machine 
-								Learning in Credit Risk Analytics, with a background in 
-								Statistics, analytical tools, Machine Learning, and Deep 
-								Learning. 8 Machine learning models were successfully guided, 
-								together with their Model Insights, Governance, Deep Impact 
-								Analysis, Model KPIs, and Validation. Domain competence in 
-								banking, finance, and insurance, as well as managing open 
-								projects in the field of e-commerce. Well-versed in a variety 
-								of programming languages, including Python, R, SQL, and SAS, 
-								as well as big data products such as Teradata and Fizurre.</p>
-
-							<div class="row">
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="https://github.com/jaikushwaha7/Capstone-Project-MSME-Advances-BABI.git" class="image fit"><img src="images/image1.png" alt="" /></a>
-										<header>
-											<h3>Predicting Delinquency and Loan default for MSME loan for PSU Bank using Advanced Machine Learning Techniques.</h3>
-											<a href="https://github.com/jaikushwaha7/Prediction_Delinquency_Paper_Published/blob/main/Samaroh_2021_paper_3.pdf" class="button scrolly">Published Paper Link</a>
-										</header>
-									</article>
-									<article class="item">
-										<a href="https://github.com/jaikushwaha7/Brand-Perception-Analytics.git" class="image fit"><img src="images/image3.jpg" alt="" /></a>
-										<header>
-											<h3>NLP and Brand perception analysis (Social media analytics - Text mining)</h3>
-										</header>
-									</article>
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>Python</span>
+									<span>95%</span>
 								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="https://github.com/jaikushwaha7/Sequence-Model---Trigger-Word-Detection.git" class="image fit"><img src="images/image4.jpg" alt="" /></a>
-										<header>
-											<h3>Deep Learning- Trigger Word Detection</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="https://github.com/jaikushwaha7/bostonhousepricing.git" class="image fit"><img src="images/image5.jpg" alt="" /></a>
-										<header>
-											<h3>Machine Learning Model Deployment in Heroku</h3>
-										</header>
-									</article>
-								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="https://github.com/jaikushwaha7/Netflix-Description-of-Movies-and-TV-shows-analysis.git" class="image fit"><img src="images/image6.jpg" alt="" /></a>
-										<header>
-											<h3>Netflix-Description-of-Movies-and-TV-shows-analysis</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="https://github.com/jaikushwaha7/Time-Series-Forecasting.git" class="image fit"><img src="images/image7.jpg" alt="" /></a>
-										<header>
-											<h3>Time Series Forecasting</h3>
-										</header>
-									</article>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 95%;" data-aos="slide-right" data-aos-offset="200"></div>
 								</div>
 							</div>
 
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>R</span>
+									<span>90%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 90%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
+
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>SQL</span>
+									<span>88%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 88%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
+
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>Machine Learning</span>
+									<span>92%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 92%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
+
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>Deep Learning</span>
+									<span>85%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 85%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
+
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>AWS</span>
+									<span>80%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 80%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
 						</div>
-					</section>
 
-				<!-- About Me -->
-					<section id="about" class="three">
-						<div class="container">
+						<div class="col-6 col-12-mobile" data-aos="fade-left">
+							<h3>Domain Expertise</h3>
 
-							<header>
-								<h2>About Me</h2>
-							</header>
-							<a href="#" class="image centered"><img src="images/jai_about.jpg" alt="" 
-								style="object-fit:cover;
-								object-position:right;
-								width:100px;
-								height:100px;
-								border: solid 1px #CCC" /></a>
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>Credit Risk Analytics</span>
+									<span>96%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 96%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
 
-							<p>I am a self-motivated learner that is prepared to go above and 
-								above on any project and gain essential skills on my own time. 
-								I taught myself computer programming languages and worked on 
-								open projects because I wanted to understand how to code and 
-								statistics and data science. My experience, skill set, 
-								adaptability, and eagerness to learn.</p>
-							
-								<p> Skills</p>
-								<p><img src="images/python.png" alt="python" width="120" hight="50">
-								<img src="images/r.png" alt="R" width="90" hight="30">
-								<img src="images/ai.png" alt="AI" width="90" hight="50">
-								<img src="images/bash.png" alt="bash" width="100" hight="50">
-								<img src="images/datascience.png" alt="datascience" width="180" hight="50">
-								<img src="images/aws.png" alt="AWS" width="100" hight="30">
-								<img src="images/visualstudio_code.png" alt="VSC" width="100" hight="50">
-								<img src="images/office_365.png" alt="office_365" width="100" hight="30">
-								<img src="images/cloud.png" alt="cloud" width="100" hight="30">
-								<img src="images/docker.png" alt="docker" width="100" hight="30">
-							</p>
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>Banking & Finance</span>
+									<span>94%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 94%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
+
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>Data Visualization</span>
+									<span>90%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 90%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
+
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>Statistical Analysis</span>
+									<span>93%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 93%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
+
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>E-commerce</span>
+									<span>82%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 82%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
+
+							<div class="progress-container">
+								<div class="progress-title">
+									<span>Project Management</span>
+									<span>87%</span>
+								</div>
+								<div class="progress-bar">
+									<div class="progress-bar-fill" style="width: 87%;" data-aos="slide-right" data-aos-offset="200"></div>
+								</div>
+							</div>
 						</div>
-					</section>
+					</div>
 
-				
+					<div class="row" style="margin-top: 3em;" data-aos="fade-up">
+						<div class="col-12">
+							<h3>Tools & Technologies</h3>
+							<div class="skills-container" style="text-align: center;">
+								<img src="images/python.png" alt="python" width="120" height="50" class="skill-icon">
+								<img src="images/r.png" alt="R" width="90" height="30" class="skill-icon">
+								<img src="images/ai.png" alt="AI" width="90" height="50" class="skill-icon">
+								<img src="images/bash.png" alt="bash" width="100" height="50" class="skill-icon">
+								<img src="images/datascience.png" alt="datascience" width="180" height="50" class="skill-icon">
+								<img src="images/aws.png" alt="AWS" width="100" height="30" class="skill-icon">
+								<img src="images/cloud.png" alt="cloud" width="100" height="30" class="skill-icon">
+								<img src="images/docker.png" alt="docker" width="100" height="30" class="skill-icon">
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Experience Section -->
+			<section id="experience" class="three">
+				<div class="container">
+					<header data-aos="fade-up" data-aos-duration="1000">
+						<h2>Professional Experience</h2>
+					</header>
+
+					<div class="timeline">
+						<div class="timeline-container left" data-aos="fade-right">
+							<div class="timeline-content">
+								<h3>Senior Consultant Analytics</h3>
+								<h4>EXL Service</h4>
+								<p class="timeline-date">2021 - 2022</p>
+								<p>Leading credit risk analytics projects for major banking clients. Developed and deployed 4 machine learning models for loan default prediction with 92% accuracy. Managed a team of 5 data scientists and analysts.</p>
+							</div>
+						</div>
+						<div class="timeline-container right" data-aos="fade-left">
+							<div class="timeline-content">
+								<h3>Assistant Manager</h3>
+								<h4>Indian Overseas Bank</h4>
+                                <h5>Specialized Debt Recovery Branch</h5>
+								<p class="timeline-date">2019 - 2021</p>
+								<p>Designed and implemented comprehensive data analysis solutions for finance and debt Recovery clients. Specialized in time series forecasting and Recovery forcasting with a portfolio of 330 Million Rs.</p>
+							</div>
+						</div>
+
+						<div class="timeline-container left" data-aos="fade-right">
+							<div class="timeline-content">
+								<h3>Assistant Manager Analyst</h3>
+								<h4>Indian Overseas Bank</h4>
+								<p class="timeline-date">2016 - 2019</p>
+								<p>Huge data analysis and Western Grid Clearing management with a team of 15 people.</p>
+							</div>
+						</div>
+                        <div class="timeline-container right" data-aos="fade-left">
+							<div class="timeline-content">
+								<h3>Probationary Officer </h3>
+                                <h6>Financial Specialist &</h6>
+                                <h6>Wealth Management</h6>
+								<h4>Indian Overseas  Bank</h4>
+								<p class="timeline-date">2014 - 2016</p>
+								<p>Led the development of risk assessment models for MSME lending. Created dashboards and reports for C-level executives. Implemented model governance frameworks.</p>
+							</div>
+						</div>
+                        <div class="timeline-container left" data-aos="fade-right">
+							<div class="timeline-content">
+								<h3>IT Engineer </h3>
+								<h4>Ashirwad Total IT Solutions</h4>
+								<p class="timeline-date">2013 - 2014</p>
+								<p>Billing System Development for small scale business owners .</p>
+							</div>
+						</div>
+                        <div class="timeline-container right" data-aos="fade-left">
+							<div class="timeline-content">
+								<h3>System Engineer </h3>
+								<h4>Tata Consultancy Services</h4>
+								<p class="timeline-date">2010 - 2012</p>
+								<p>ETL & Data pipelines creation US clients(Bank of America and Genworth). </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- About Me -->
+			<section id="about" class="two" style="background-color: var(--light-bg);">
+				<div class="container">
+					<header data-aos="fade-up">
+						<h2>About Me</h2>
+					</header>
+
+					<div class="row">
+						<div class="col-4 col-12-mobile" data-aos="fade-right">
+							<div class="image-container" style="text-align: center;">
+								<img src="images/jai_about.jpg" alt=""
+									style="object-fit: cover;
+									object-position: right;
+									width: 200px;
+									height: 200px;
+									border-radius: 50%;
+									border: 5px solid var(--primary-color);
+									box-shadow: 0 10px 20px rgba(0,0,0,0.1);" />
+							</div>
+						</div>
+						<div class="col-8 col-12-mobile" data-aos="fade-left">
+							<p>I am a self-motivated learner that is prepared to go above and
+								beyond on any project and gain essential skills on my own time.
+								I taught myself computer programming languages and worked on
+								open projects because I wanted to understand how to code,
+								statistics, and data science. My experience, skill set,
+								adaptability, and eagerness to learn have helped me excel in every role.</p>
+
+							<p>With 11 years of professional experience and 6 years focused on data analytics,
+								I've developed strong expertise in converting complex data into actionable insights.
+								I'm particularly passionate about using machine learning and artificial intelligence
+								to solve real-world business problems in the financial sector.</p>
+
+							<p>Outside of work, I enjoy contributing to open-source projects, participating in
+								Kaggle competitions, and mentoring aspiring data scientists. I believe in continuous
+								learning and regularly attend conferences and workshops to stay updated with the
+								latest advancements in data science.</p>
+
+							<div style="margin-top: 2em;">
+								<a href="#portfolio" class="btn" data-aos="fade-left">View My Projects</a>
+								<a href="resume.pdf" class="btn" data-aos="fade-right" style="margin-left: 10px;">Download CV</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Testimonials Section -->
+			<section id="testimonials" class="three">
+				<div class="container">
+					<header data-aos="fade-up">
+						<h2>Testimonials</h2>
+					</header>
+
+					<div class="row">
+						<div class="col-4 col-12-mobile" data-aos="fade-up" data-aos-delay="100">
+							<div class="testimonial">
+								<p>"Jai's expertise in credit risk analytics transformed our lending process. His machine learning models have significantly reduced our default rates while increasing approval rates."</p>
+								<div class="testimonial-author">
+									<div>
+										<h4>Richa Agarwal</h4>
+										<p>Director, Tredence</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-4 col-12-mobile" data-aos="fade-up" data-aos-delay="200">
+							<div class="testimonial">
+								<p>"Working with Jai was a game-changer for our analytics team. His deep understanding of both the technical and business aspects helped us implement solutions that truly impacted our bottom line."</p>
+								<div class="testimonial-author">
+								<div>
+										<h4>Harsh Sejwar</h4>
+										<p>AVP, EXL</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-4 col-12-mobile" data-aos="fade-up" data-aos-delay="300">
+							<div class="testimonial">
+								<p>"Jai's ability to explain complex statistical concepts in simple terms made our collaboration incredibly productive. His models have been instrumental in our strategic decision-making."</p>
+								<div class="testimonial-author">
+
+									<div>
+										<h4>Shankarand Jha</h4>
+										<p>DGM, Indian Overseas Bank</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Contact -->
+			<section id="contact" class="four" style="background-color: var(--light-bg);">
+				<div class="container">
+					<header data-aos="fade-up">
+						<h2>Get In Touch</h2>
+					</header>
+
+					<p data-aos="fade-up" data-aos-delay="100">Interested in collaborating or have a project in mind? Feel free to reach out to me using the form below or through my contact details.</p>
+
+					<form method="post" action="#" data-aos="fade-up" data-aos-delay="200">
+						<div class="row">
+							<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
+							<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
+							<div class="col-12">
+								<input type="text" name="subject" placeholder="Subject" />
+							</div>
+							<div class="col-12">
+								<textarea name="message" placeholder="Message"></textarea>
+							</div>
+							<div class="col-12" data-aos="fade-down">
+								<input type="submit" value="Send Message" class="btn" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
+
 		<!-- Footer -->
-			<div id="footer">
-				<section class="alt">
-					<h3>Address</h3>
-					<p>Berlin Germany, 10245<br />
-					</p>
-				</section>
-				<section>
-					<h3>Phone</h3>
-					<p><a href="#">+49-15231411067</a></p>
-				</section>
-				<section>
-					<h3>Email</h3>
-					<p><a href="#">jaikushwaha7@gmail.com</a></p>
-				</section>
-				<section>
-					<h3>Social</h3>
-				<ul class="icons">
-					<li><a href="https://github.com/jaikushwaha7 " class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="https://linkedin.com/in/jai-kushwaha" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
-							<li><a href="https://www.kaggle.com/jaikushwaha" class="icon brands fa-kaggle"><span class="label">Kaggle</span></a></li>
-							<li><a href="jaikushwaha7@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-							<li><a href="https://eportfolio.mygreatlearning.com/jai-kushwaha" class="fas fa-hand-pointer"><span class="label"></span></a></li>
-							<li><a href="https://goo.gl/maps/5zetnA2cGmjKAbHf8" class="icon solid fa-location-arrow"><span class="label">Berlin, Germany</span></a></li>
-				</ul>
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>Thanks for visiting</li><li> <a href=""></a></li>
-					    
-					</ul>
+		<div id="footer" data-aos="fade-up">
+			<div class="container">
+				<div class="row">
+					<div class="col-4 col-12-mobile">
+						<section class="alt">
+							<h3>Address</h3>
+							<p>Berlin, Germany 10245</p>
+						</section>
+					</div>
+					<div class="col-4 col-12-mobile">
+						<section>
+							<h3>Phone</h3>
+							<p><a href="tel:+4915231411067">+49-15231411067</a></p>
+						</section>
+					</div>
+					<div class="col-4 col-12-mobile">
+						<section>
+							<h3>Email</h3>
+							<p><a href="mailto:jaikushwaha7@gmail.com">jaikushwaha7@gmail.com</a></p>
+						</section>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 2em;">
+					<div class="col-12">
+						<section>
+							<h3>Social</h3>
+							<ul class="icons" style="justify-content: center;">
+								<li><a href="https://github.com/jaikushwaha7" class="icon brands fa-github" title="GitHub"><span class="label">Github</span></a></li>
+								<li><a href="https://linkedin.com/in/jai-kushwaha" class="icon brands fa-linkedin-in" title="LinkedIn"><span class="label">Linkedin</span></a></li>
+								<li><a href="https://www.kaggle.com/jaikushwaha" class="icon brands fa-kaggle" title="Kaggle"><span class="label">Kaggle</span></a></li>
+								<li><a href="mailto:jaikushwaha7@gmail.com" class="icon solid fa-envelope" title="Email"><span class="label">Email</span></a></li>
+								<li><a href="https://eportfolio.mygreatlearning.com/jai-kushwaha" class="fas fa-hand-pointer" title="E-Portfolio"><span class="label"></span></a></li>
+								<li><a href="https://goo.gl/maps/5zetnA2cGmjKAbHf8" class="icon solid fa-location-arrow" title="Location"><span class="label">Berlin, Germany</span></a></li>
+							</ul>
+						</section>
+					</div>
+				</div>
 
+				<!-- Copyright -->
+				<ul class="copyright">
+					<li>© <span id="current-year">2025</span> Jai Kushwaha</li>
+					<li>Thanks for visiting</li>
+				</ul>
 			</div>
+		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+		<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
+		<!-- Custom script -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// Initialize AOS
+				AOS.init({
+					duration: 800,
+					once: true
+				});
+
+				// Initialize Typed.js
+				new Typed('#typing-text', {
+					strings: [
+						'"Learning data science is like going to the gym, you only benefit if you do it consistently."',
+						"Turning data into actionable insights.",
+						"Passionate about machine learning and AI.",
+						"Solving complex problems with data-driven approaches."
+					],
+					typeSpeed: 50,
+					backSpeed: 30,
+					backDelay: 2000,
+					startDelay: 500,
+					loop: true
+				});
+
+				// Set current year in copyright
+				document.getElementById('current-year').innerText = new Date().getFullYear();
+
+				// Dark mode toggle
+				const darkModeToggle = document.getElementById('darkModeToggle');
+				const body = document.body;
+				const icon = darkModeToggle.querySelector('i');
+
+				// Check for saved theme preference
+				if (localStorage.getItem('darkMode') === 'enabled') {
+					enableDarkMode();
+				}
+
+				darkModeToggle.addEventListener('click', () => {
+					if (body.classList.contains('dark-mode')) {
+						disableDarkMode();
+					} else {
+						enableDarkMode();
+					}
+				});
+
+				function enableDarkMode() {
+					body.classList.add('dark-mode');
+					icon.classList.remove('fa-moon');
+					icon.classList.add('fa-sun');
+					localStorage.setItem('darkMode', 'enabled');
+
+					// Add styles for dark mode
+					const darkModeStyles = document.createElement('style');
+					darkModeStyles.id = 'dark-mode-styles';
+					darkModeStyles.innerHTML = `
+						body.dark-mode {
+							background-color: #121212;
+							color: #e0e0e0;
+						}
+
+						body.dark-mode #header {
+							background-color: #1e1e1e;
+							color: #e0e0e0;
+						}
+
+						body.dark-mode .two {
+							background-color: #1e1e1e;
+							color: #e0e0e0;
+						}
+
+						body.dark-mode .three {
+							background-color: #121212;
+							color: #e0e0e0;
+						}
+
+						body.dark-mode .button {
+							background: var(--accent-color);
+						}
+
+						body.dark-mode .portfolio-item,
+						body.dark-mode .testimonial,
+						body.dark-mode .timeline-content {
+							background-color: #2d2d2d;
+							color: #e0e0e0;
+						}
+
+						body.dark-mode input,
+						body.dark-mode textarea {
+							background-color: #2d2d2d;
+							color: #e0e0e0;
+							border: 1px solid #444;
+						}
+					`;
+					document.head.appendChild(darkModeStyles);
+				}
+
+				function disableDarkMode() {
+					body.classList.remove('dark-mode');
+					icon.classList.remove('fa-sun');
+					icon.classList.add('fa-moon');
+					localStorage.setItem('darkMode', null);
+
+					const darkModeStyles = document.getElementById('dark-mode-styles');
+					if (darkModeStyles) {
+						darkModeStyles.remove();
+					}
+				}
+
+				// Smooth scroll for all anchor links
+				document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+					anchor.addEventListener('click', function(e) {
+						e.preventDefault();
+
+						const targetId = this.getAttribute('href');
+						const targetElement = document.querySelector(targetId);
+
+						if (targetElement) {
+							window.scrollTo({
+								top: targetElement.offsetTop,
+								behavior: 'smooth'
+							});
+						}
+					});
+				});
+
+				// Add active class to nav items on scroll
+				const sections = document.querySelectorAll('section');
+				const navItems = document.querySelectorAll('#nav ul li a');
+
+				window.addEventListener('scroll', () => {
+					let current = '';
+
+					sections.forEach(section => {
+						const sectionTop = section.offsetTop;
+						const sectionHeight = section.clientHeight;
+
+						if (pageYOffset >= sectionTop - 300) {
+							current = section.getAttribute('id');
+						}
+					});
+
+					navItems.forEach(li => {
+						li.classList.remove('active');
+						if (li.getAttribute('href').substring(1) === current) {
+							li.classList.add('active');
+						}
+					});
+				});
+
+				// Portfolio items hover effect
+				const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+				portfolioItems.forEach(item => {
+					item.addEventListener('mouseenter', () => {
+						item.querySelector('header').style.opacity = '1';
+					});
+
+					item.addEventListener('mouseleave', () => {
+						item.querySelector('header').style.opacity = '0.9';
+					});
+				});
+
+				// Add parallax effect to top section
+				const topSection = document.querySelector('#top');
+
+				window.addEventListener('scroll', () => {
+					const scrollPosition = window.pageYOffset;
+					if (topSection) {
+						topSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+					}
+				});
+
+				// Animate skill bars on scroll
+				const skillBars = document.querySelectorAll('.progress-bar-fill');
+
+				const animateSkillBars = () => {
+					skillBars.forEach(bar => {
+						const width = bar.style.width;
+						bar.style.width = '0';
+
+						setTimeout(() => {
+							bar.style.width = width;
+						}, 500);
+					});
+				};
+
+				// Trigger once when skills section is in view
+				const skillsSection = document.querySelector('#skills');
+
+				if (skillsSection) {
+					const observer = new IntersectionObserver(entries => {
+						entries.forEach(entry => {
+							if (entry.isIntersecting) {
+								animateSkillBars();
+								observer.unobserve(entry.target);
+							}
+						});
+					});
+
+					observer.observe(skillsSection);
+				}
+
+				// Add counter animation
+				const startCounters = () => {
+					const counters = document.querySelectorAll('.count-number');
+					const speed = 200;
+
+					counters.forEach(counter => {
+						const target = +counter.getAttribute('data-target');
+						const count = +counter.innerText;
+						const increment = target / speed;
+
+						if (count < target) {
+							counter.innerText = Math.ceil(count + increment);
+							setTimeout(startCounters, 1);
+						} else {
+							counter.innerText = target;
+						}
+					});
+				};
+
+				// Add form validation
+				const contactForm = document.querySelector('form');
+
+				if (contactForm) {
+					contactForm.addEventListener('submit', function(e) {
+						e.preventDefault();
+
+						const nameField = this.querySelector('input[name="name"]');
+						const emailField = this.querySelector('input[name="email"]');
+						const messageField = this.querySelector('textarea[name="message"]');
+						let isValid = true;
+
+						// Simple validation
+						if (!nameField.value.trim()) {
+							nameField.style.borderColor = 'red';
+							isValid = false;
+						} else {
+							nameField.style.borderColor = '';
+						}
+
+						if (!emailField.value.trim() || !emailField.value.includes('@')) {
+							emailField.style.borderColor = 'red';
+							isValid = false;
+						} else {
+							emailField.style.borderColor = '';
+						}
+
+						if (!messageField.value.trim()) {
+							messageField.style.borderColor = 'red';
+							isValid = false;
+						} else {
+							messageField.style.borderColor = '';
+						}
+
+						if (isValid) {
+							// Here you would typically send the form data to a server
+							alert('Thank you for your message! I will get back to you soon.');
+							this.reset();
+						}
+					});
+				}
+			});
+		</script>
+
+		<!-- Add additional styles for responsive design -->
+		<style>
+			@media screen and (max-width: 736px) {
+				.timeline::after {
+					left: 31px;
+				}
+
+				.timeline-container {
+					width: 100%;
+					padding-left: 70px;
+					padding-right: 25px;
+				}
+
+				.timeline-container.left,
+				.timeline-container.right {
+					left: 0%;
+				}
+
+				.portfolio-item h3 {
+					font-size: 1em;
+				}
+
+				#typing-text {
+					font-size: 1em;
+				}
+			}
+
+			/* Animation for portfolio items */
+			@keyframes float {
+				0% {
+					transform: translateY(0px);
+				}
+				50% {
+					transform: translateY(-10px);
+				}
+				100% {
+					transform: translateY(0px);
+				}
+			}
+
+			.portfolio-item:hover {
+				animation: float 3s ease-in-out infinite;
+			}
+
+			/* Styles for typing cursor */
+			.typing-cursor {
+				display: inline-block;
+				width: 3px;
+				height: 1em;
+				background-color: #fff;
+				margin-left: 2px;
+				animation: blink 1s infinite;
+			}
+
+			@keyframes blink {
+				0%, 100% {opacity: 1;}
+				50% {opacity: 0;}
+			}
+		</style>
 	</body>
 </html>
