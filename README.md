@@ -1,14 +1,4 @@
 ### hey there 
-
-<a href="https://twitter.com/jaikushwaha88">
-  <img align="left" alt="Jai Kushwaha | Twitter" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
-</a>
-<a href="https://www.linkedin.com/in/jai-kushwaha/">
-  <img align="left" alt="Jai's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
-</a>
-
-
-
 <br />
 
 hi, i'm Jai Kushwaha, a passionate self-taught data science ML/AI enthusiast
