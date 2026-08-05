@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Consulting | Jai Kushwaha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #10b981;
+            --accent-light: #34d399;
+            --accent-2: #3b82f6;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --card: rgba(30, 41, 59, 0.6);
+            --border: rgba(148, 163, 184, 0.1);
+            --gold: #f59e0b;
+            --gold-light: #fbbf24;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 50%);
+        }
+
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
+
+        .mobile-menu { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        section { padding: 6rem 5%; }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 8rem;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat p { font-size: 0.9rem; color: var(--text-muted); }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .credential-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .credential-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .credential-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .credential-card h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .credential-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            width: 50px; height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card h4 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .service-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .tag-tax { background: rgba(16, 185, 129, 0.15); color: var(--accent-light); }
+        .tag-insurance { background: rgba(59, 130, 246, 0.15); color: var(--accent-2); }
+        .tag-banking { background: rgba(245, 158, 11, 0.15); color: var(--gold-light); }
+        .tag-wealth { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+        .tag-corporate { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .exp-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .exp-card:hover { border-color: rgba(245, 158, 11, 0.3); }
+
+        .exp-card .company { color: var(--gold-light); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .exp-card h4 { margin-bottom: 0.5rem; }
+        .exp-card p { color: var(--text-muted); font-size: 0.9rem; }
+        .exp-card .duration { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--accent);
+            opacity: 0.2;
+            position: absolute;
+            top: -10px; left: 20px;
+        }
+
+        .client-since {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-light);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .testimonial-text { font-style: italic; color: var(--text-muted); margin-bottom: 1.5rem; position: relative; z-index: 1; }
+
+        .testimonial-author h5 { font-size: 1rem; }
+        .testimonial-author p { font-size: 0.85rem; color: var(--accent-light); }
+
+        .cta-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p { color: var(--text-muted); margin-bottom: 2rem; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3); }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover { border-color: var(--accent); background: rgba(16, 185, 129, 0.05); }
+
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer .socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        footer .socials a {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        footer .socials a:hover { color: var(--accent); transform: translateY(-3px); }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .hero-stats { gap: 2rem; flex-wrap: wrap; }
+            .hero { padding-top: 6rem; }
+            section { padding: 4rem 5%; }
+            .btn-secondary { margin-left: 0; margin-top: 1rem; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <nav>
+        <a href="index.html" class="logo">Jai Kushwaha</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#testimonials">Clients</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="mailto:jaikushwaha@gmail.com" class="nav-cta">Book Consultation</a>
+        <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <section class="hero">
+        <div>
+            <div class="hero-badge">
+                <i class="fas fa-certificate" style="font-size: 0.9rem;"></i>
+                CAIIB Certified - Independent Financial Consultant
+            </div>
+            <h1>Smarter money decisions, <span>backed by 8 years</span> in banking and finance.</h1>
+            <p>Independent consulting on tax filing, insurance and banking products - freelance, for the last 5 years. Your goals first. Always.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>8+</h3>
+                    <p>Years in Banking, Finance and Insurance</p>
+                </div>
+                <div class="stat">
+                    <h3>20L+</h3>
+                    <p>Client Tax Savings to Date</p>
+                </div>
+                <div class="stat">
+                    <h3>5</h3>
+                    <p>Years Freelance Practice</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-header">
+            <h2>About Me</h2>
+            <p>I have spent 8 years working across banking, finance and insurance - including time with Bank of America, Citi and Indian Overseas Bank - before going independent 5 years ago as a freelance financial consultant.</p>
+        </div>
+        <div class="credentials-grid">
+            <div class="credential-card reveal">
+                <i class="fas fa-award"></i>
+                <h4>CAIIB Certified</h4>
+                <p>Certified Associate of Indian Institute of Bankers</p>
+            </div>
+            <div class="credential-card reveal">
+                <i class="fas fa-graduation-cap"></i>
+                <h4>Masters in Business Analytics</h4>
+                <p>Advanced analytics and data-driven decision making</p>
+            </div>
+            <div class="credential-card reveal">
+                <i class="fas fa-brain"></i>
+                <h4>Data Science Professional</h4>
+                <p>ML/AI expertise applied to financial problems</p>
+            </div>
+            <div class="credential-card reveal">
+                <i class="fas fa-building-columns"></i>
+                <h4>8+ Years Banking and Finance</h4>
+                <p>IOB, Citi, Bank of America, TCS</p>
+            </div>
+            <div class="credential-card reveal">
+                <i class="fas fa-handshake"></i>
+                <h4>5 Years Freelance Practice</h4>
+                <p>Independent, unbiased client-first advice</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" style="background: linear-gradient(180deg, rgba(16,185,129,0.03), transparent);">
+        <div class="section-header">
+            <h2>Services</h2>
+            <p>Consulting across the financial products that matter most - independent, unbiased, and tailored to you.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon tag-tax"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h4>Income Tax Filing (ITR)</h4>
+                <p>Accurate, on-time filing for salaried, self-employed and business clients, with every eligible deduction accounted for.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon tag-tax"><i class="fas fa-piggy-bank"></i></div>
+                <h4>Tax Planning and Saving</h4>
+                <p>Year-round planning that has helped clients save over 20 lakh combined, not just a rushed filing in March.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon tag-insurance"><i class="fas fa-shield-halved"></i></div>
+                <h4>Insurance Advisory</h4>
+                <p>Independent guidance on life, health and general insurance, matched to your actual risk and budget - not commission.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon tag-banking"><i class="fas fa-credit-card"></i></div>
+                <h4>Banking Products</h4>
+                <p>Loans, credit cards and account structuring advice drawn from years working inside major banks.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon tag-wealth"><i class="fas fa-chart-pie"></i></div>
+                <h4>Investment and Wealth Advisory</h4>
+                <p>Portfolio guidance built around your goals and time horizon, explained in plain terms.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon tag-corporate"><i class="fas fa-briefcase"></i></div>
+                <h4>Business and Corporate Finance</h4>
+                <p>Financial consulting for small businesses and founders navigating tax, compliance and cash flow.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-header">
+            <h2>Experience</h2>
+            <p>A career built inside major banks, now serving clients directly.</p>
+        </div>
+        <div class="exp-grid">
+            <div class="exp-card reveal">
+                <p class="company">Indian Overseas Bank</p>
+                <h4>Banking Operations</h4>
+                <p>Started in retail banking operations, building a grounding in day-to-day banking products and processes.</p>
+                <div class="duration"><i class="far fa-clock"></i> Early Career</div>
+            </div>
+            <div class="exp-card reveal">
+                <p class="company">Citi and Bank of America</p>
+                <h4>Retail and Cards Banking</h4>
+                <p>Worked across retail and cards banking functions, deepening expertise in credit, risk and customer financial products.</p>
+                <div class="duration"><i class="far fa-clock"></i> Mid Career</div>
+            </div>
+            <div class="exp-card reveal">
+                <p class="company">Independent Practice</p>
+                <h4>Independent Financial Consultant</h4>
+                <p>Went freelance to advise individuals and businesses directly on tax, insurance and banking - unconstrained by any one institution.</p>
+                <div class="duration"><i class="far fa-clock"></i> 5 Years, Ongoing</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" style="background: linear-gradient(180deg, transparent, rgba(245,158,11,0.03));">
+        <div class="section-header">
+            <h2>Client Trust</h2>
+            <p>Long relationships, built one filing season at a time.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <span class="client-since">CLIENT SINCE 2019</span>
+                <p class="testimonial-text">Seven filing seasons in, I still do not look at my own tax return before it is submitted. That is not laziness, that is trust I did not have with anyone before.</p>
+                <div class="testimonial-author">
+                    <h5>Ramdeep Sharma</h5>
+                    <p>Individual Client</p>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <span class="client-since">CLIENT SINCE 2020</span>
+                <p class="testimonial-text">Six years of returns and never once a follow-up notice from the department. I stopped thinking about tax season the day I stopped doing it myself.</p>
+                <div class="testimonial-author">
+                    <h5>Alankrita Singh</h5>
+                    <p>Individual Client</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+        <h2>Let us talk about your finances.</h2>
+        <p>Book a free consultation, or reach out directly by email. Whether it is tax planning, insurance review, or banking advice - the first conversation is always complimentary.</p>
+        <div style="margin-top: 2rem;">
+            <a href="mailto:jaikushwaha@gmail.com" class="btn-primary"><i class="fas fa-calendar-check"></i> Book a Free Consultation</a>
+            <a href="mailto:jaikushwaha@gmail.com" class="btn-secondary"><i class="fas fa-envelope"></i> jaikushwaha@gmail.com</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted);">
+            Jai Kushwaha - CAIIB Certified Financial Consultant
+        </p>
+    </section>
+
+    <footer>
+        <div class="socials">
+            <a href="https://github.com/jaikushwaha7" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/jai-kushwaha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://jaikushwaha7.medium.com/" target="_blank"><i class="fab fa-medium"></i></a>
+            <a href="mailto:jaikushwaha@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p> Jai Kushwaha. Independent Financial Consultant and Data Scientist.</p>
+    </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
