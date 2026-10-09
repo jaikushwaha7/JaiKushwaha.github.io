@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jai Kushwaha — Data Science, Credit Risk & Finance</title>
+<meta name="description" content="Jai Kushwaha: data scientist, credit-risk analyst and independent financial consultant. Version 2 of the portfolio.">
+<link rel="icon" type="image/png" href="../images/avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.16.0/devicon.min.css">
+<style>
+:root {
+  --bg: #f6f5fa;
+  --line: #e3e1e8;
+  --ink: #555559;
+  --ink-strong: #1c1c22;
+  --muted: #8a8890;
+  --card: #ffffff;
+  --violet: #774aff;
+  --orange: #ff784b;
+  --pink: #ffb0dd;
+  --navy: #254571;
+  --green: #33e37a;
+  --radius: 28px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Geist', 'Helvetica Neue', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.mono { font-family: 'Geist Mono', ui-monospace, Consolas, monospace; }
+.eyebrow { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.display {
+  font-weight: 600; letter-spacing: -0.035em; line-height: .95; text-transform: uppercase; color: var(--ink);
+}
+
+/* colour strip */
+.strip { position: fixed; top: 0; left: 0; right: 0; height: 6px; display: flex; z-index: 1100; }
+.strip i { flex: 1; }
+.strip i:nth-child(1){background:var(--navy)} .strip i:nth-child(2){background:var(--pink)}
+.strip i:nth-child(3){background:var(--orange)} .strip i:nth-child(4){background:var(--violet)}
+
+/* glass nav */
+.nav {
+  position: fixed; top: 22px; left: 50%; transform: translateX(-50%); z-index: 1000;
+  display: flex; align-items: center; gap: .4rem;
+  padding: .45rem .5rem .45rem 1.1rem;
+  background: rgba(255,255,255,.62);
+  backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(37,69,113,.10);
+  max-width: calc(100vw - 24px);
+}
+.nav .brand { font-weight: 700; color: var(--ink-strong); text-decoration: none; margin-right: .8rem; display: flex; align-items: center; gap: .5rem; white-space: nowrap; }
+.nav .links { display: flex; gap: .1rem; list-style: none; }
+.nav .links a { text-decoration: none; font-size: .85rem; padding: .5rem .8rem; border-radius: 999px; transition: background .25s, color .25s; }
+.nav .links a:hover { background: rgba(119,74,255,.1); color: var(--violet); }
+.nav .cta { background: #000; color: var(--bg); text-decoration: none; font-size: .85rem; font-weight: 500; padding: .6rem 1.1rem; border-radius: 999px; margin-left: .4rem; white-space: nowrap; transition: background .25s; }
+.nav .cta:hover { background: var(--violet); }
+
+.mark { width: 22px; height: 22px; }
+
+/* hero */
+.hero-wrap { padding: 12px; padding-top: 18px; height: 175vh; position: relative; }
+.hero {
+  position: sticky; top: 12px; height: calc(100vh - 30px); min-height: 560px; border-radius: var(--radius); overflow: hidden;
+  will-change: transform, border-radius;
+  background: var(--navy); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+  padding: 7rem 1.5rem 9rem;
+  isolation: isolate;
+}
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -3; transform: scale(var(--vs, 1.08)); will-change: transform; }
+.scrim { position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgba(37,69,113,.55) 0%, rgba(37,69,113,.62) 45%, rgba(20,34,60,.82) 100%); opacity: var(--scrim, 1); }
+.hero.has-video .blob { opacity: .28; mix-blend-mode: soft-light; }
+.hero-copy { display: flex; flex-direction: column; align-items: center; will-change: transform, opacity; }
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .85; z-index: -1; animation: drift 16s ease-in-out infinite; }
+.blob.b1 { width: 46vmax; height: 46vmax; background: var(--violet); left: -12vmax; top: -14vmax; }
+.blob.b2 { width: 38vmax; height: 38vmax; background: var(--orange); right: -10vmax; top: 8vmax; animation-delay: -4s; opacity: .7; }
+.blob.b3 { width: 34vmax; height: 34vmax; background: var(--pink); left: 22vw; bottom: -18vmax; animation-delay: -8s; opacity: .6; }
+.blob.b4 { width: 22vmax; height: 22vmax; background: var(--green); right: 16vw; bottom: -6vmax; animation-delay: -11s; opacity: .35; }
+@keyframes drift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(4vmax,3vmax) scale(1.08); } 66% { transform: translate(-3vmax,5vmax) scale(.94); } }
+.grain { position: absolute; inset: 0; z-index: -1; opacity: .18; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.hero h1 { font-weight: 500; letter-spacing: -0.045em; line-height: .98; font-size: clamp(2.6rem, 7.4vw, 7rem); max-width: 14ch; }
+.hero h1 em { font-style: normal; background: linear-gradient(90deg, #fff, var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .sub { max-width: 560px; margin-top: 1.6rem; color: rgba(255,255,255,.82); font-size: clamp(1rem, 1.5vw, 1.2rem); }
+.hero .actions { display: flex; gap: .8rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; font-weight: 500; font-size: .95rem; padding: .85rem 1.5rem; border-radius: 999px; transition: transform .25s, background .25s, color .25s; border: 1px solid transparent; cursor: pointer; font-family: inherit; }
+.btn:hover { transform: translateY(-2px); }
+.btn.dark { background: #000; color: var(--bg); } .btn.dark:hover { background: var(--violet); }
+.btn.light { background: #fff; color: var(--ink-strong); } .btn.light:hover { background: var(--pink); }
+.btn.ghost { border-color: rgba(255,255,255,.4); color: #fff; } .btn.ghost:hover { background: rgba(255,255,255,.14); }
+.btn.outline { border-color: var(--line); color: var(--ink-strong); background: transparent; } .btn.outline:hover { border-color: var(--violet); color: var(--violet); }
+.claim { position: absolute; left: 0; right: 0; bottom: 1.6rem; display: flex; justify-content: space-between; padding: 0 clamp(1rem, 4vw, 3rem); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.85); }
+.claim span { flex: 1; text-align: center; } .claim span:first-child { text-align: left; } .claim span:last-child { text-align: right; }
+.since { position: absolute; bottom: 1.6rem; right: clamp(1rem, 4vw, 3rem); }
+
+/* terminal in hero */
+.term {
+  position: absolute; right: clamp(1rem, 4vw, 3rem); bottom: 4.5rem; width: 360px; text-align: left;
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,.25); overflow: hidden;
+  font-family: 'Geist Mono', ui-monospace, Consolas, monospace; font-size: 12px; color: #fff;
+}
+.term-bar { display: flex; gap: 6px; align-items: center; padding: .6rem .9rem; border-bottom: 1px solid rgba(255,255,255,.18); }
+.term-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.5); display: block; }
+.term-bar span { margin-left: auto; opacity: .7; font-size: 11px; }
+.term-out { padding: .8rem .9rem .3rem; height: 168px; overflow-y: auto; white-space: pre-wrap; line-height: 1.7; scrollbar-width: none; }
+.term-out::-webkit-scrollbar { display: none; }
+.term-out .c { color: var(--pink); } .term-out .g { color: #9bf5c0; } .term-out .d { opacity: .75; }
+.term-in { display: flex; align-items: center; gap: .5rem; padding: .2rem .9rem .8rem; }
+.term-in b { color: var(--pink); font-weight: 500; }
+.term-in input { flex: 1; background: transparent; border: 0; outline: 0; color: #fff; font: inherit; caret-color: var(--green); }
+.term-in input::placeholder { color: rgba(255,255,255,.5); }
+.term-hint { padding: 0 .9rem .7rem; font-size: 10.5px; opacity: .6; }
+
+/* sections */
+section { padding: clamp(4rem, 9vw, 8rem) clamp(1rem, 5vw, 4rem); max-width: 1320px; margin: 0 auto; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; flex-wrap: wrap; margin-bottom: clamp(2rem, 5vw, 4rem); }
+.sec-head h2 { font-size: clamp(2.2rem, 6vw, 5rem); max-width: 12ch; }
+.sec-head p { max-width: 380px; color: var(--muted); }
+
+/* about (Zolt-inspired: warm paper, frame lines, dotted grid, tilted photo cards) */
+.about-wrap { max-width: 1320px; margin: 0 auto; padding: 0 clamp(.5rem, 3vw, 2.5rem); }
+.about-frame {
+  position: relative; background: #faf8f5;
+  border-left: 1px solid var(--line); border-right: 1px solid var(--line);
+  background-image: radial-gradient(rgba(85,85,89,.16) 1px, transparent 1.2px); background-size: 22px 22px;
+  padding: clamp(3rem, 7vw, 6.5rem) clamp(1.2rem, 5vw, 5rem);
+}
+.about-frame { isolation: isolate; overflow: hidden; }
+.about-frame::before, .about-frame::after { content: ''; position: absolute; left: 0; right: 0; height: 1px; background: var(--line); }
+.about-frame::before { top: 0; } .about-frame::after { bottom: 0; }
+.slash { font-style: italic; color: var(--orange); font-weight: 500; font-size: 1.05rem; letter-spacing: -.01em; }
+.about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; margin-top: 1rem; }
+.about-grid h2 { font-size: clamp(2.2rem, 5.2vw, 4.4rem); font-weight: 500; letter-spacing: -.04em; line-height: 1.02; color: var(--ink-strong); max-width: 14ch; }
+.about-grid h2 span { color: var(--muted); }
+.about-text p { margin-top: 1.2rem; max-width: 56ch; font-size: 1.05rem; }
+.about-text p:first-of-type { margin-top: 1.8rem; font-size: 1.2rem; color: var(--ink-strong); letter-spacing: -.01em; }
+.about-text p b { color: var(--ink-strong); font-weight: 600; }
+.pills { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 2rem; }
+.pill { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; font-size: .92rem; font-weight: 500; color: var(--ink-strong); background: #fff; border: 1px solid var(--line); padding: .7rem 1.25rem; border-radius: 999px; box-shadow: 0 1px 0 rgba(0,0,0,.03); transition: transform .25s, box-shadow .25s, border-color .25s; }
+.pill:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(37,69,113,.12); border-color: var(--orange); }
+.pill .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); }
+.facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 2.4rem; max-width: 560px; }
+.fact { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1rem 1.15rem; }
+.fact small { display: block; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+.fact span { color: var(--ink-strong); font-size: .95rem; line-height: 1.35; display: block; }
+.avail { display: inline-flex; align-items: center; gap: .5rem; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: .3rem .8rem; font-size: .75rem; color: var(--ink); box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.avail i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(51,227,122,.2); display: block; animation: ping 2.2s ease-in-out infinite; }
+@keyframes ping { 50% { box-shadow: 0 0 0 7px rgba(51,227,122,0); } }
+/* ID card (flips on scroll and on hover / tap) */
+.idscene { display: flex; flex-direction: column; align-items: center; perspective: 1400px; justify-self: center; padding-top: .5rem; }
+.sway { position: relative; display: flex; flex-direction: column; align-items: center; transform-origin: 50% 0; animation: sway 7s ease-in-out infinite; }
+@keyframes sway { 0%,100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.6deg); } }
+.lanyard { width: 42px; height: 130px; margin-bottom: -4px; position: relative; overflow: hidden; border-radius: 3px 3px 0 0;
+  background: linear-gradient(90deg, #6a3de8, #9a7bff 50%, #6a3de8); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+.lanyard span { position: absolute; top: 50%; left: 50%; white-space: nowrap; transform: translate(-50%, -50%) rotate(90deg); font-size: .5rem; letter-spacing: .22em; color: rgba(255,255,255,.85); font-weight: 600; }
+.clip { width: 34px; height: 22px; border: 3px solid #b6b6c2; border-radius: 6px 6px 10px 10px; background: linear-gradient(#ececf2, #c6c6d2); margin-bottom: -13px; position: relative; z-index: 2; }
+.idcard { position: relative; width: min(300px, 78vw); aspect-ratio: 300 / 470; transform-style: preserve-3d; transform: rotateY(var(--ry, 0deg)); cursor: pointer; outline: none; border-radius: 22px; -webkit-tap-highlight-color: transparent; }
+.idcard:focus-visible { box-shadow: 0 0 0 3px var(--violet); }
+.face { position: absolute; inset: 0; border-radius: 22px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 30px 60px rgba(37,69,113,.25), 0 2px 0 rgba(0,0,0,.04); padding: 1rem; display: flex; flex-direction: column; }
+.face.front { background: #fff; align-items: center; text-align: center; gap: .55rem; }
+.face.back { background: var(--navy); color: #fff; transform: rotateY(180deg); gap: .9rem; }
+.holo { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: .2; mix-blend-mode: soft-light;
+  background: linear-gradient(115deg, transparent 18%, rgba(255,176,221,.9) 33%, rgba(119,74,255,.8) 44%, rgba(51,227,122,.7) 55%, transparent 70%);
+  background-size: 260% 100%; background-position: var(--shine, 50%) 0; }
+.id-head { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: .15rem .2rem .35rem; }
+.id-head .hole { width: 44px; height: 9px; border-radius: 999px; background: var(--bg); box-shadow: inset 0 1px 2px rgba(0,0,0,.25); }
+.id-head small { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.id-photo { width: 100%; flex: 1; min-height: 0; border-radius: 16px; overflow: hidden; background: linear-gradient(160deg, #eceaf4, #d9d5ea); position: relative; }
+.id-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; display: block; }
+.id-photo::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(90deg, var(--navy) 25%, var(--pink) 25% 50%, var(--orange) 50% 75%, var(--violet) 75%); }
+.face.front h3 { font-size: 1.45rem; letter-spacing: -.03em; color: var(--ink-strong); font-weight: 600; line-height: 1.1; margin-top: .2rem; }
+.face.front .role { font-size: .8rem; color: var(--violet); font-weight: 500; margin-top: -.25rem; }
+.id-meta { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; text-align: left; }
+.id-meta span { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); line-height: 1.45; }
+.id-meta b { display: block; font-size: .82rem; letter-spacing: -.01em; text-transform: none; color: var(--ink-strong); font-weight: 600; }
+.barcode { width: 100%; height: 26px; border-radius: 3px; opacity: .85;
+  background: repeating-linear-gradient(90deg, #1c1c22 0 2px, transparent 2px 4px, #1c1c22 4px 5px, transparent 5px 9px, #1c1c22 9px 12px, transparent 12px 14px, #1c1c22 14px 15px, transparent 15px 18px); }
+.face.back .bk-top { display: flex; justify-content: space-between; align-items: center; padding-top: .2rem; }
+.face.back h4 { font-size: 1.25rem; letter-spacing: -.02em; font-weight: 600; }
+.face.back .bk-top small { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; opacity: .65; }
+.bk-list { display: grid; gap: .7rem; margin-top: .4rem; }
+.bk-list div small { display: block; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--pink); margin-bottom: .1rem; }
+.bk-list div span { font-size: .86rem; line-height: 1.35; color: rgba(255,255,255,.92); word-break: break-word; }
+.bk-links { display: flex; gap: .5rem; margin-top: auto; }
+.bk-links a { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.14); color: #fff; text-decoration: none; transition: background .25s, color .25s; }
+.bk-links a:hover { background: #fff; color: var(--navy); }
+.face.back .barcode { background: repeating-linear-gradient(90deg, #fff 0 2px, transparent 2px 4px, #fff 4px 5px, transparent 5px 9px, #fff 9px 12px, transparent 12px 14px, #fff 14px 15px, transparent 15px 18px); opacity: .7; }
+.flip-hint { margin-top: 1.4rem; font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .5rem; }
+.flip-hint i { color: var(--orange); }
+@media (prefers-reduced-motion: reduce) { .sway { animation: none; } }
+@media (max-width: 1000px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .idscene { order: -1; }
+}
+@media (prefers-reduced-motion: reduce) { .avail i { animation: none; } }
+
+/* animated section backgrounds */
+section { position: relative; isolation: isolate; }
+.bgfx { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; z-index: -1; overflow: hidden; pointer-events: none; }
+.bgfx.in-frame { left: 0; width: 100%; margin-left: 0; }
+.bgfx.paused, .bgfx.paused *, .bgfx.paused::before, .bgfx.paused::after { animation-play-state: paused !important; }
+.bgfx.blobs i { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .32; animation: drift 22s ease-in-out infinite; }
+.bgfx.blobs i:nth-child(1) { width: 34vmax; height: 34vmax; background: var(--violet); left: -10vmax; top: 4%; }
+.bgfx.blobs i:nth-child(2) { width: 28vmax; height: 28vmax; background: var(--orange); right: -8vmax; top: 30%; animation-delay: -7s; opacity: .26; }
+.bgfx.blobs i:nth-child(3) { width: 24vmax; height: 24vmax; background: var(--pink); left: 38%; bottom: -10vmax; animation-delay: -13s; opacity: .4; }
+.bgfx.blobs.alt i:nth-child(1) { background: var(--orange); left: auto; right: -8vmax; top: -6vmax; }
+.bgfx.blobs.alt i:nth-child(2) { background: var(--violet); right: auto; left: -8vmax; top: 40%; }
+.bgfx.blobs.alt i:nth-child(3) { background: #7fd6ff; left: 50%; bottom: -12vmax; opacity: .3; }
+.bgfx.grid::before { content: ''; position: absolute; inset: -40px; background-image: radial-gradient(rgba(85,85,89,.2) 1.2px, transparent 1.6px); background-size: 30px 30px;
+  animation: pan 26s linear infinite; -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 25%, transparent 78%); mask-image: radial-gradient(ellipse at 50% 50%, #000 25%, transparent 78%); }
+.bgfx.orbits i { position: absolute; left: 50%; top: 50%; border: 1px dashed rgba(119,74,255,.28); border-radius: 50%; animation: spin 60s linear infinite; }
+.bgfx.orbits i::after { content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--orange); top: -6px; left: 50%; margin-left: -6px; box-shadow: 0 0 18px rgba(255,120,75,.6); }
+.bgfx.orbits i:nth-child(1) { width: 46vmin; height: 46vmin; margin: -23vmin 0 0 -23vmin; }
+.bgfx.orbits i:nth-child(2) { width: 74vmin; height: 74vmin; margin: -37vmin 0 0 -37vmin; animation-duration: 90s; animation-direction: reverse; }
+.bgfx.orbits i:nth-child(2)::after { background: var(--violet); box-shadow: 0 0 18px rgba(119,74,255,.6); }
+.bgfx.orbits i:nth-child(3) { width: 104vmin; height: 104vmin; margin: -52vmin 0 0 -52vmin; animation-duration: 130s; }
+.bgfx.orbits i:nth-child(3)::after { background: var(--pink); box-shadow: 0 0 18px rgba(255,176,221,.8); }
+.bgfx.lines::before { content: ''; position: absolute; inset: -60px; background: repeating-linear-gradient(115deg, rgba(37,69,113,.07) 0 1px, transparent 1px 44px); animation: slant 18s linear infinite;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); }
+.bgfx.lines::after { content: ''; position: absolute; top: 0; bottom: 0; width: 30vw; left: -30vw; background: linear-gradient(90deg, transparent, rgba(119,74,255,.1), transparent); animation: sweep 9s ease-in-out infinite; }
+.bgfx.flow i { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(85,85,89,.1); overflow: hidden; }
+.bgfx.flow i::after { content: ''; position: absolute; left: 0; width: 1px; height: 26%; top: -30%; background: linear-gradient(180deg, transparent, var(--orange), transparent); animation: fall 6s linear infinite; }
+.bgfx.flow i:nth-child(1) { left: 12%; } .bgfx.flow i:nth-child(2) { left: 30%; } .bgfx.flow i:nth-child(3) { left: 50%; } .bgfx.flow i:nth-child(4) { left: 70%; } .bgfx.flow i:nth-child(5) { left: 88%; }
+.bgfx.flow i:nth-child(2)::after { animation-delay: -2s; background: linear-gradient(180deg, transparent, var(--violet), transparent); }
+.bgfx.flow i:nth-child(3)::after { animation-delay: -4s; animation-duration: 8s; }
+.bgfx.flow i:nth-child(4)::after { animation-delay: -1s; background: linear-gradient(180deg, transparent, var(--pink), transparent); }
+.bgfx.flow i:nth-child(5)::after { animation-delay: -3.5s; animation-duration: 7s; background: linear-gradient(180deg, transparent, var(--navy), transparent); }
+.bgfx.sparks i { position: absolute; bottom: -20px; left: var(--x); width: var(--s, 8px); height: var(--s, 8px); border-radius: 50%; background: var(--c, var(--violet)); opacity: 0; animation: rise var(--d, 12s) linear infinite; animation-delay: var(--dl, 0s); }
+@keyframes drift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(4vmax,3vmax) scale(1.1); } 66% { transform: translate(-3vmax,5vmax) scale(.92); } }
+@keyframes pan { to { background-position: 30px 30px; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes slant { to { transform: translateX(44px); } }
+@keyframes sweep { 0% { left: -30vw; } 60%,100% { left: 110vw; } }
+@keyframes fall { to { top: 110%; } }
+@keyframes rise { 0% { transform: translateY(0) translateX(0); opacity: 0; } 12% { opacity: .55; } 85% { opacity: .35; } 100% { transform: translateY(-110vh) translateX(26px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .bgfx, .bgfx * , .bgfx::before, .bgfx::after { animation: none !important; } }
+
+/* toolkit */
+.tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.tool-group { background: rgba(255,255,255,.82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid #fff; border-radius: var(--radius); padding: 1.8rem; }
+.tool-group h3 { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 1.2rem; }
+.tool-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.tool { display: flex; align-items: center; gap: .7rem; background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: .7rem .8rem; font-size: .88rem; font-weight: 500; color: var(--ink-strong); transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s, border-color .3s, background .3s; }
+.tool:hover { transform: translateY(-3px) rotate(-.6deg); background: #fff; border-color: var(--violet); box-shadow: 0 12px 26px rgba(119,74,255,.16); }
+.tool .ico { width: 30px; height: 30px; flex: none; display: grid; place-items: center; font-size: 1.55rem; line-height: 1; color: var(--violet); transition: transform .4s; }
+.tool:hover .ico { transform: scale(1.18) rotate(8deg); }
+.tool .ico.fa-solid, .tool .ico i { font-size: 1.15rem; }
+.tool .ico.o { color: var(--orange); } .tool .ico.n { color: var(--navy); } .tool .ico.p { color: #e0559f; } .tool .ico.v { color: var(--violet); }
+@media (max-width: 1000px) { .tools { grid-template-columns: 1fr; } }
+
+/* ecosystem cards */
+.eco { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.eco-card { border-radius: var(--radius); padding: 2rem; min-height: 340px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: transform .35s cubic-bezier(.2,.7,.2,1); position: relative; overflow: hidden; }
+.eco-card:hover { transform: translateY(-6px) rotate(-.4deg); }
+.eco-card h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -.03em; line-height: 1; font-weight: 600; text-transform: uppercase; }
+.eco-card p { max-width: 30ch; font-size: .95rem; margin-top: 1rem; }
+.eco-card .arrow { align-self: flex-end; width: 46px; height: 46px; border-radius: 50%; background: #000; color: #fff; display: grid; place-items: center; transition: transform .3s, background .3s; }
+.eco-card:hover .arrow { transform: rotate(-45deg); background: var(--ink-strong); }
+.eco-card.v { background: var(--violet); color: #fff; } .eco-card.o { background: var(--orange); color: #1c1c22; } .eco-card.p { background: var(--pink); color: #1c1c22; }
+.eco-card .num { font-size: .8rem; letter-spacing: .14em; opacity: .75; }
+
+/* principles */
+.principles { border-top: 1px solid var(--line); }
+.principle { display: grid; grid-template-columns: 90px 1fr 1.1fr; gap: 2rem; align-items: baseline; padding: 2rem 0; border-bottom: 1px solid var(--line); transition: padding .3s; }
+.principle:hover { padding-left: 1rem; }
+.principle .n { color: var(--muted); font-size: .85rem; }
+.principle h3 { font-size: clamp(2rem, 5vw, 4rem); }
+.principle:nth-child(1):hover h3 { color: var(--violet); } .principle:nth-child(2):hover h3 { color: var(--orange); }
+.principle:nth-child(3):hover h3 { color: var(--navy); } .principle:nth-child(4):hover h3 { color: #e0559f; }
+.principle p { max-width: 46ch; }
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.stat { background: var(--card); border-radius: var(--radius); padding: 2rem; }
+.stat b { display: block; font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -.05em; line-height: 1; font-weight: 600; color: var(--ink-strong); }
+.stat:nth-child(1) b { color: var(--violet); } .stat:nth-child(2) b { color: var(--orange); } .stat:nth-child(3) b { color: var(--navy); }
+.stat span { color: var(--muted); font-size: .9rem; }
+
+/* work */
+.work { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.work-card { background: var(--card); border-radius: var(--radius); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; min-height: 300px; transition: box-shadow .3s, transform .3s; text-decoration: none; position: relative; }
+.work-card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(37,69,113,.12); }
+.work-card .tag { display: inline-block; align-self: flex-start; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .8rem; border-radius: 999px; }
+.work-card:nth-child(4n+1) .tag { background: rgba(119,74,255,.12); color: var(--violet); }
+.work-card:nth-child(4n+2) .tag { background: rgba(255,120,75,.14); color: #d9542a; }
+.work-card:nth-child(4n+3) .tag { background: rgba(37,69,113,.12); color: var(--navy); }
+.work-card:nth-child(4n+4) .tag { background: rgba(255,176,221,.35); color: #b23b83; }
+.work-card h3 { font-size: 1.7rem; letter-spacing: -.025em; line-height: 1.1; color: var(--ink-strong); font-weight: 600; }
+.work-card p { flex: 1; }
+.work-card .more { font-size: .85rem; font-weight: 500; color: var(--ink-strong); display: inline-flex; gap: .5rem; align-items: center; }
+.work-card:hover .more { color: var(--violet); }
+.work-card.wide { grid-column: span 2; background: var(--ink-strong); color: rgba(255,255,255,.75); }
+.work-card.wide h3 { color: #fff; } .work-card.wide .more { color: #fff; } .work-card.wide .tag { background: rgba(255,255,255,.12); color: #fff; }
+
+/* experience */
+.xp-row { display: grid; grid-template-columns: 170px 1fr 1.4fr; gap: 2rem; padding: 1.8rem 0; border-top: 1px solid var(--line); align-items: baseline; transition: background .3s, padding .3s; }
+.xp-row:last-child { border-bottom: 1px solid var(--line); }
+.xp-row:hover { background: rgba(119,74,255,.05); padding-left: 1rem; padding-right: 1rem; border-radius: 16px; }
+.xp-row .when { color: var(--muted); font-size: .85rem; }
+.xp-row h3 { font-size: 1.35rem; color: var(--ink-strong); letter-spacing: -.02em; font-weight: 600; }
+.xp-row h3 small { display: block; font-size: .85rem; font-weight: 400; color: var(--violet); margin-top: .2rem; letter-spacing: 0; }
+
+/* marquee */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding: 1.6rem 0; margin: 0 -100vw; padding-inline: 100vw; }
+.track { display: flex; gap: 3rem; width: max-content; animation: slide 32s linear infinite; }
+.track span { font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 600; letter-spacing: -.03em; text-transform: uppercase; color: var(--ink); white-space: nowrap; display: flex; align-items: center; gap: 3rem; }
+.track span::after { content: ''; width: 12px; height: 12px; border-radius: 50%; background: var(--orange); }
+.track span:nth-child(3n+2)::after { background: var(--violet); } .track span:nth-child(3n)::after { background: var(--pink); }
+@keyframes slide { to { transform: translateX(-50%); } }
+.marquee-wrap { overflow: hidden; }
+
+/* bht spotlight */
+.bht { background: var(--navy); color: #fff; border-radius: var(--radius); max-width: 1320px; margin: 0 auto; padding: clamp(2rem, 5vw, 4.5rem); display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; position: relative; overflow: hidden; }
+.bht::before { content: ''; position: absolute; width: 40vmax; height: 40vmax; right: -14vmax; top: -18vmax; background: var(--violet); filter: blur(90px); opacity: .6; border-radius: 50%; }
+.bht > * { position: relative; }
+.bht h2 { font-size: clamp(2rem, 4.6vw, 4rem); color: #fff; margin: .8rem 0 1.2rem; }
+.bht p { color: rgba(255,255,255,.78); max-width: 46ch; margin-bottom: 1.6rem; }
+.medal { display: inline-flex; gap: .5rem; align-items: center; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: .4rem 1rem; font-size: .8rem; }
+.medal i { color: #ffd166; }
+.paper { background: #fff; color: var(--ink); border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.35); transform: rotate(2deg); transition: transform .5s; }
+.paper:hover { transform: rotate(0); }
+.paper .bar { display: flex; gap: 6px; align-items: center; padding: .7rem 1rem; background: var(--bg); border-bottom: 1px solid var(--line); }
+.paper .bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); display: block; }
+.paper .bar span { margin-left: .6rem; font-size: .72rem; color: var(--muted); }
+.paper .body { padding: 1.6rem; }
+.paper .uni { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--violet); font-weight: 600; }
+.paper h4 { font-size: 1.4rem; color: var(--ink-strong); letter-spacing: -.02em; margin: .3rem 0 1rem; font-weight: 600; }
+.paper .news { border-left: 3px solid var(--orange); padding-left: 1rem; line-height: 2; }
+.hl { position: relative; white-space: nowrap; color: var(--ink-strong); font-weight: 600; padding: .05em .3em; border-radius: 6px; background: linear-gradient(120deg, var(--pink), #ffd6ee) no-repeat left center; background-size: 0% 100%; transition: background-size 1s cubic-bezier(.2,.7,.2,1) .5s; }
+.in .hl, .no-io .hl { background-size: 100% 100%; }
+
+/* voices + writing */
+.voices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.voice { background: var(--card); border-radius: var(--radius); padding: 2.2rem; }
+.voice q { display: block; quotes: none; font-size: 1.2rem; line-height: 1.5; color: var(--ink-strong); letter-spacing: -.01em; margin-bottom: 1.4rem; }
+.voice cite { font-style: normal; font-size: .85rem; color: var(--muted); }
+.voice cite b { color: var(--ink-strong); display: block; font-weight: 600; }
+.posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.post { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.8rem; text-decoration: none; display: flex; flex-direction: column; gap: .8rem; min-height: 230px; transition: border-color .3s, background .3s; }
+.post:hover { border-color: var(--violet); background: #fff; }
+.post h3 { font-size: 1.25rem; letter-spacing: -.02em; line-height: 1.2; color: var(--ink-strong); font-weight: 600; flex: 1; }
+
+/* contact */
+.contact { background: var(--violet); color: #fff; border-radius: var(--radius); max-width: 1320px; margin: 0 auto; padding: clamp(2.5rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem); text-align: center; position: relative; overflow: hidden; }
+.contact::before, .contact::after { content: ''; position: absolute; border-radius: 50%; filter: blur(70px); }
+.contact::before { width: 30vmax; height: 30vmax; left: -8vmax; bottom: -14vmax; background: var(--orange); opacity: .7; }
+.contact::after { width: 24vmax; height: 24vmax; right: -6vmax; top: -10vmax; background: var(--pink); opacity: .55; }
+.contact > * { position: relative; z-index: 1; }
+.contact h2 { font-size: clamp(2.6rem, 8vw, 7rem); color: #fff; margin-bottom: 1.5rem; }
+.contact p { max-width: 520px; margin: 0 auto 2rem; color: rgba(255,255,255,.88); }
+.socials { display: flex; justify-content: center; gap: .7rem; margin-top: 2rem; }
+.socials a { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.16); color: #fff; text-decoration: none; transition: background .3s, transform .3s; }
+.socials a:hover { background: #fff; color: var(--violet); transform: translateY(-3px); }
+footer { max-width: 1320px; margin: 0 auto; padding: 2.5rem clamp(1rem, 5vw, 4rem) 3rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: var(--muted); }
+footer a { text-decoration: none; } footer a:hover { color: var(--violet); }
+
+/* reveal */
+.js .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.js .rv.in, .js.no-io .rv { opacity: 1; transform: none; }
+
+@media (min-width: 1001px) and (max-width: 1280px) {
+  .term { width: 290px; }
+  .term-out { height: 120px; }
+}
+@media (max-width: 1000px) {
+  .eco, .stats, .posts { grid-template-columns: 1fr; }
+  .work, .voices, .bht { grid-template-columns: 1fr; }
+  .work-card.wide { grid-column: auto; }
+  .principle { grid-template-columns: 1fr; gap: .6rem; }
+  .xp-row { grid-template-columns: 1fr; gap: .4rem; }
+  .term { position: relative; right: auto; bottom: auto; margin-top: 2.5rem; width: min(100%, 420px); }
+  .hero-wrap { height: auto; }
+  .hero { position: relative; top: auto; height: auto; min-height: calc(100vh - 30px); padding-bottom: 7rem; }
+  .nav .links { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .blob, .track { animation: none; } .js .rv { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+<div class="strip"><i></i><i></i><i></i><i></i></div>
+
+<nav class="nav" aria-label="Main">
+  <a href="#top" class="brand">
+    <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6" r="3" fill="#ff784b"/><circle cx="5" cy="14" r="2.4" fill="#774aff"/><circle cx="19" cy="14" r="2.4" fill="#ffb0dd"/><circle cx="12" cy="19" r="2.4" fill="#254571"/></svg>
+    Jai Kushwaha
+  </a>
+  <ul class="links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#practice">Practice</a></li>
+    <li><a href="#toolkit">Toolkit</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#path">Path</a></li>
+    <li><a href="#bht">BHT</a></li>
+    <li><a href="#writing">Writing</a></li>
+  </ul>
+  <a href="#contact" class="cta">Let's talk</a>
+</nav>
+
+<div class="hero-wrap" id="top">
+  <header class="hero has-video" id="hero">
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="scrim"></div>
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+    <div class="grain"></div>
+    <div class="hero-copy" id="heroCopy">
+      <span class="eyebrow" style="color:rgba(255,255,255,.8); margin-bottom:1.4rem;">Data science · Credit risk · Finance</span>
+      <h1>Risk-smart <em>data science</em>.</h1>
+      <p class="sub">I build, validate and explain machine-learning models for banks, and advise people on money. Eleven years across banking, analytics and consulting, now studying for an M.Sc. in Berlin.</p>
+      <div class="actions">
+        <a class="btn light" href="#work"><i class="fas fa-arrow-down"></i> See the work</a>
+        <a class="btn ghost" href="../consulting.html"><i class="fas fa-briefcase"></i> Consulting</a>
+      </div>
+    </div>
+
+    <div class="term" id="term">
+      <div class="term-bar"><i></i><i></i><i></i><span>jai@lab ~ </span></div>
+      <div class="term-out" id="termOut" aria-live="polite"></div>
+      <div class="term-in"><b>$</b><input id="termIn" type="text" placeholder="type help" autocomplete="off" spellcheck="false" aria-label="Terminal command"></div>
+      <div class="term-hint">Try: help · about · skills · projects · contact</div>
+    </div>
+
+    <div class="claim"><span>Risk</span><span>Models</span><span>Insights</span><span>Advice</span></div>
+  </header>
+</div>
+
+<main>
+<div class="about-wrap" id="about">
+  <div class="about-frame rv">
+    <div class="bgfx sparks in-frame"><i style="--x:8%;--s:7px;--d:14s;--dl:-2s"></i><i style="--x:22%;--s:10px;--c:var(--orange);--d:18s;--dl:-9s"></i><i style="--x:37%;--s:6px;--c:var(--pink);--d:13s;--dl:-5s"></i><i style="--x:52%;--s:9px;--d:20s;--dl:-12s"></i><i style="--x:66%;--s:7px;--c:var(--orange);--d:15s;--dl:-1s"></i><i style="--x:79%;--s:11px;--c:var(--navy);--d:22s;--dl:-14s"></i><i style="--x:91%;--s:6px;--c:var(--pink);--d:16s;--dl:-7s"></i></div>
+    <span class="slash">// About me</span>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>The person behind <span>the models.</span></h2>
+        <p>I'm Jai, a self-taught data scientist who wanted to understand how complex data turns into decisions people can act on, so I taught myself programming, statistics and machine learning.</p>
+        <p>I have <b>11 years</b> of professional experience, <b>6 of them in data analytics</b>, across banking, finance, insurance and e-commerce. I've guided <b>8 ML models</b> through insights, governance and validation, working in Python, R, SQL, SAS, Teradata and on AWS.</p>
+        <p>Today I'm studying <b>Data Science (M.Sc.) in Berlin</b>, while running an independent financial consulting practice on the side. Away from the screen I contribute to open source, enter Kaggle competitions, mentor aspiring data scientists, cook, and learn guitar.</p>
+        <div class="pills">
+          <a class="pill" href="#contact"><span class="dot"></span> Let's connect</a>
+          <a class="pill" href="https://www.linkedin.com/in/jai-kushwaha/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+          <a class="pill" href="https://github.com/jaikushwaha7" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="facts">
+          <div class="fact"><small>Now</small><span>M.Sc. Data Science, BHT Berlin</span></div>
+          <div class="fact"><small>Before</small><span>Banking, credit risk, analytics</span></div>
+          <div class="fact"><small>Toolkit</small><span>Python · R · SQL · SAS · AWS</span></div>
+          <div class="fact"><small>On the side</small><span>Financial consulting, Kaggle, mentoring</span></div>
+        </div>
+      </div>
+      <div class="idscene" id="idscene">
+        <div class="sway">
+          <div class="lanyard" aria-hidden="true"><span>JAI KUSHWAHA</span></div>
+          <div class="clip" aria-hidden="true"></div>
+          <div class="idcard" id="idcard" tabindex="0" role="button" aria-pressed="false" aria-label="ID card of Jai Kushwaha. Press to flip.">
+            <div class="face front">
+              <div class="holo"></div>
+              <div class="id-head"><span class="hole"></span><small>Data · Risk · Finance</small></div>
+              <div class="id-photo"><img src="../images/Jai%20Photo%20Bg%20Removed%206.png" alt="Portrait of Jai Kushwaha in a suit" loading="lazy"></div>
+              <h3>Jai Kushwaha</h3>
+              <p class="role">Data Scientist · Credit Risk Analyst</p>
+              <div class="id-meta"><span>Studying<b>M.Sc. Data Science</b></span><span>Experience<b>11+ years</b></span></div>
+              <div class="barcode"></div>
+            </div>
+            <div class="face back">
+              <div class="holo"></div>
+              <div class="bk-top"><h4>Jai Kushwaha</h4><small>Since 2010</small></div>
+              <div class="bk-list">
+                <div><small>Role</small><span>Data scientist, credit-risk analyst &amp; independent financial consultant</span></div>
+                <div><small>Studying</small><span>M.Sc. Data Science, BHT Berlin</span></div>
+                <div><small>Background</small><span>Banking, analytics and consulting</span></div>
+                <div><small>Contact</small><span>jaikushwaha7@gmail.com</span></div>
+              </div>
+              <div class="bk-links">
+                <a href="https://www.linkedin.com/in/jai-kushwaha/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/jaikushwaha7" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://jaikushwaha7.medium.com/" target="_blank" rel="noopener" aria-label="Medium"><i class="fab fa-medium-m"></i></a>
+              </div>
+              <div class="barcode"></div>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint"><i class="fas fa-rotate"></i> Hover, tap or keep scrolling to flip</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="practice">
+  <div class="bgfx blobs"><i></i><i></i><i></i></div>
+  <div class="sec-head rv">
+    <h2 class="display">Three practices, one mind.</h2>
+    <p>Where analytics meets money. Pick the door that fits your problem.</p>
+  </div>
+  <div class="eco">
+    <a class="eco-card v rv" href="#work">
+      <div><span class="num mono">01</span><h3 style="margin-top:1rem">Data<br>Science</h3><p>Machine learning and deep learning, from data preparation to governed, validated models.</p></div>
+      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a class="eco-card o rv" href="#path">
+      <div><span class="num mono">02</span><h3 style="margin-top:1rem">Credit<br>Risk</h3><p>Default prediction, recovery forecasting and model governance across banking and finance.</p></div>
+      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a class="eco-card p rv" href="../consulting.html">
+      <div><span class="num mono">03</span><h3 style="margin-top:1rem">Financial<br>Consulting</h3><p>Independent advice on tax planning, insurance and banking products.</p></div>
+      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+    </a>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="bgfx grid"></div>
+  <div class="stats">
+    <div class="stat rv"><b data-count="11" data-suffix="+">11+</b><span>Years of professional experience</span></div>
+    <div class="stat rv"><b data-count="8" data-suffix="+">8+</b><span>ML models guided through insights, governance and validation</span></div>
+    <div class="stat rv"><b>₹20L+</b><span>Client tax savings through consulting</span></div>
+  </div>
+</section>
+
+<div class="marquee-wrap"><div class="marquee"><div class="track" aria-hidden="true">
+  <span>Python</span><span>R</span><span>SQL</span><span>SAS</span><span>Teradata</span><span>Machine Learning</span><span>Deep Learning</span><span>AWS</span><span>Credit Risk</span><span>Tableau</span>
+  <span>Python</span><span>R</span><span>SQL</span><span>SAS</span><span>Teradata</span><span>Machine Learning</span><span>Deep Learning</span><span>AWS</span><span>Credit Risk</span><span>Tableau</span>
+</div></div></div>
+
+<section id="toolkit">
+  <div class="bgfx orbits"><i></i><i></i><i></i></div>
+  <div class="sec-head rv">
+    <h2 class="display">Toolkit.</h2>
+    <p>The languages, platforms and methods I reach for most often.</p>
+  </div>
+  <div class="tools">
+    <div class="tool-group rv">
+      <h3>Languages &amp; data</h3>
+      <div class="tool-list">
+        <div class="tool"><span class="ico"><i class="devicon-python-plain colored"></i></span>Python</div>
+        <div class="tool"><span class="ico"><i class="devicon-r-plain colored"></i></span>R</div>
+        <div class="tool"><span class="ico n"><i class="fa-solid fa-database"></i></span>SQL</div>
+        <div class="tool"><span class="ico o"><i class="fa-solid fa-chart-simple"></i></span>SAS</div>
+        <div class="tool"><span class="ico p"><i class="fa-solid fa-server"></i></span>Teradata</div>
+        <div class="tool"><span class="ico"><i class="devicon-bash-plain colored"></i></span>Bash</div>
+        <div class="tool"><span class="ico"><i class="devicon-git-plain colored"></i></span>Git</div>
+      </div>
+    </div>
+    <div class="tool-group rv">
+      <h3>Cloud &amp; tools</h3>
+      <div class="tool-list">
+        <div class="tool"><span class="ico"><i class="devicon-amazonwebservices-original colored"></i></span>AWS</div>
+        <div class="tool"><span class="ico"><i class="devicon-azure-plain colored"></i></span>Azure</div>
+        <div class="tool"><span class="ico"><i class="devicon-googlecloud-plain colored"></i></span>Google Cloud</div>
+        <div class="tool"><span class="ico"><i class="devicon-docker-plain colored"></i></span>Docker</div>
+        <div class="tool"><span class="ico"><i class="devicon-vscode-plain colored"></i></span>VS Code</div>
+        <div class="tool"><span class="ico n"><i class="fa-solid fa-chart-column"></i></span>Tableau</div>
+        <div class="tool"><span class="ico v"><i class="fa-solid fa-chart-line"></i></span>Looker</div>
+      </div>
+    </div>
+    <div class="tool-group rv">
+      <h3>Modelling &amp; risk</h3>
+      <div class="tool-list">
+        <div class="tool"><span class="ico v"><i class="fa-solid fa-brain"></i></span>Machine learning</div>
+        <div class="tool"><span class="ico o"><i class="fa-solid fa-network-wired"></i></span>Deep learning</div>
+        <div class="tool"><span class="ico n"><i class="fa-solid fa-scale-balanced"></i></span>Credit risk</div>
+        <div class="tool"><span class="ico p"><i class="fa-solid fa-square-poll-vertical"></i></span>Statistics</div>
+        <div class="tool"><span class="ico v"><i class="fa-solid fa-timeline"></i></span>Forecasting</div>
+        <div class="tool"><span class="ico o"><i class="fa-solid fa-shield-halved"></i></span>Model governance</div>
+        <div class="tool"><span class="ico n"><i class="fa-solid fa-chart-pie"></i></span>Data visualisation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="principles-sec" id="how">
+  <div class="bgfx lines"></div>
+  <div class="sec-head rv">
+    <h2 class="display">How I work.</h2>
+    <p>Four habits that keep models useful after the slide deck ends.</p>
+  </div>
+  <div class="principles">
+    <div class="principle rv"><span class="n mono">01</span><h3 class="display">Validate</h3><p>A model isn't done when it fits. Challenger models, stability checks and back-testing come first.</p></div>
+    <div class="principle rv"><span class="n mono">02</span><h3 class="display">Explain</h3><p>If the business can't see why a score moved, it won't trust it. Interpretability is a feature.</p></div>
+    <div class="principle rv"><span class="n mono">03</span><h3 class="display">Ship</h3><p>Dashboards, pipelines and governance that people actually use, not notebooks left on a laptop.</p></div>
+    <div class="principle rv"><span class="n mono">04</span><h3 class="display">Teach</h3><p>Mentoring aspiring data scientists and writing about what I learn along the way.</p></div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="bgfx blobs alt"><i></i><i></i><i></i></div>
+  <div class="sec-head rv">
+    <h2 class="display">Selected work.</h2>
+    <p>Projects from banking, plus writing and side experiments.</p>
+  </div>
+  <div class="work">
+    <a class="work-card wide rv" href="https://arxiv.org/abs/2608.17711" target="_blank" rel="noopener">
+      <span class="tag">Research · arXiv 2026</span>
+      <h3>Accuracy and Robustness of Model Cascades Under Data Perturbations</h3>
+      <p>Prediction cascades send easy inputs to a small model and defer difficult ones to a larger one to save energy. This paper, co-authored with Pallavi Mitra and Felix Biessmann, studies how that holds up when the data is perturbed.</p>
+      <span class="more">Read on arXiv (2608.17711) <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <div class="work-card wide rv">
+      <span class="tag">Credit risk · EXL Service</span>
+      <h3>Loan default prediction for major banking clients</h3>
+      <p>Led credit-risk analytics projects, developed and deployed four ML models for loan default prediction with 92% accuracy, and managed a team of five data scientists and analysts.</p>
+    </div>
+    <div class="work-card rv">
+      <span class="tag">Forecasting · Indian Overseas Bank</span>
+      <h3>Recovery forecasting for a ₹330M portfolio</h3>
+      <p>Designed data-analysis solutions for finance and debt recovery at a specialised recovery branch, focused on time-series and recovery forecasting.</p>
+    </div>
+    <div class="work-card rv">
+      <span class="tag">Governance</span>
+      <h3>Insights, governance and validation for 8 ML models</h3>
+      <p>Guided eight models from insight generation through governance frameworks to independent validation.</p>
+    </div>
+    <a class="work-card rv" href="https://jaikushwaha7.medium.com/how-the-term-of-attention-mechanism-was-introduced-and-what-and-why-of-attention-mechanism-90d148625360" target="_blank" rel="noopener">
+      <span class="tag">Deep learning · Article</span>
+      <h3>How the attention mechanism was introduced</h3>
+      <p>The what and why of attention in modern neural networks.</p>
+      <span class="more">Read on Medium <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a class="work-card rv" href="https://jaikushwaha7.medium.com/aws-vs-azure-vs-google-api-comparison-77a0ffe4e3ba" target="_blank" rel="noopener">
+      <span class="tag">Cloud · Article</span>
+      <h3>AWS vs Azure vs Google API comparison</h3>
+      <p>A side-by-side look at the major cloud providers and their APIs.</p>
+      <span class="more">Read on Medium <i class="fas fa-arrow-right"></i></span>
+    </a>
+  </div>
+  <p class="rv" style="margin-top:2rem"><a class="btn outline" href="https://github.com/jaikushwaha7?tab=repositories" target="_blank" rel="noopener"><i class="fab fa-github"></i> All repositories on GitHub</a></p>
+</section>
+
+<section id="path">
+  <div class="bgfx flow"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="sec-head rv">
+    <h2 class="display">The path.</h2>
+    <p>From ETL pipelines at TCS to credit-risk analytics and independent consulting.</p>
+  </div>
+  <div>
+    <div class="xp-row rv"><span class="when mono">2021 — 2022</span><h3>Senior Consultant, Analytics<small>EXL Service</small></h3><p>Led credit-risk analytics for major banking clients; deployed four ML models for loan default prediction; managed a team of five.</p></div>
+    <div class="xp-row rv"><span class="when mono">2019 — 2021</span><h3>Assistant Manager<small>Indian Overseas Bank · Specialised Debt Recovery</small></h3><p>Data-analysis solutions for finance and debt recovery; time-series and recovery forecasting on a ₹330 million portfolio.</p></div>
+    <div class="xp-row rv"><span class="when mono">2016 — 2019</span><h3>Assistant Manager Analyst<small>Indian Overseas Bank</small></h3><p>Large-scale data analysis and Western Grid clearing with a team of 15; risk-assessment models for MSME lending and executive dashboards.</p></div>
+    <div class="xp-row rv"><span class="when mono">2014 — 2016</span><h3>Probationary Officer<small>Indian Overseas Bank · Wealth Management</small></h3><p>Risk-assessment models for MSME lending, executive reporting and model-governance frameworks.</p></div>
+    <div class="xp-row rv"><span class="when mono">2013 — 2014</span><h3>IT Engineer<small>Ashirwad Total IT Solutions</small></h3><p>Billing-system development for small-scale business owners.</p></div>
+    <div class="xp-row rv"><span class="when mono">2010 — 2012</span><h3>System Engineer<small>Tata Consultancy Services</small></h3><p>ETL and data pipelines for US clients, Bank of America and Genworth.</p></div>
+  </div>
+</section>
+
+<div id="bht" style="padding:0 12px">
+  <div class="bht rv" id="bhtCard">
+    <div>
+      <span class="eyebrow" style="color:rgba(255,255,255,.65)">Now studying</span>
+      <h2 class="display">Berlin. Data Science M.Sc.</h2>
+      <p>I'm a student on the Data Science Master at Berliner Hochschule für Technik, an English-taught programme focused on Urban Technologies and Intelligent Machines. The programme page features our team's hackathon result.</p>
+      <div style="display:flex; gap:.8rem; flex-wrap:wrap; align-items:center">
+        <span class="medal"><i class="fas fa-medal"></i> 3rd prize · HERE Hackathon 2025</span>
+        <a class="btn light" href="https://studiengang.bht-berlin.de/en/ds-master" target="_blank" rel="noopener">See it on the BHT site <i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </div>
+    <div class="paper">
+      <div class="bar"><i></i><i></i><i></i><span class="mono">studiengang.bht-berlin.de/en/ds-master</span></div>
+      <div class="body">
+        <div class="uni">Berliner Hochschule für Technik</div>
+        <h4>Data Science Master</h4>
+        <p class="news">A team of four BHT Data Science students, including <span class="hl">Jai Kushwaha</span>, won 3rd prize at the HERE Hackathon 2025.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="voices">
+  <div class="bgfx sparks"><i style="--x:8%;--s:7px;--d:14s;--dl:-2s"></i><i style="--x:22%;--s:10px;--c:var(--orange);--d:18s;--dl:-9s"></i><i style="--x:37%;--s:6px;--c:var(--pink);--d:13s;--dl:-5s"></i><i style="--x:52%;--s:9px;--d:20s;--dl:-12s"></i><i style="--x:66%;--s:7px;--c:var(--orange);--d:15s;--dl:-1s"></i><i style="--x:79%;--s:11px;--c:var(--navy);--d:22s;--dl:-14s"></i><i style="--x:91%;--s:6px;--c:var(--pink);--d:16s;--dl:-7s"></i></div>
+  <div class="sec-head rv">
+    <h2 class="display">Kind words.</h2>
+    <p>From colleagues I've worked with.</p>
+  </div>
+  <div class="voices">
+    <div class="voice rv"><q>Jai's expertise in credit risk analytics transformed our lending process. His machine learning models have significantly reduced our default rates while increasing approval rates.</q><cite><b>Harsh Sejwar</b>AVP, EXL Service</cite></div>
+    <div class="voice rv"><q>Working with Jai was a game-changer for our analytics team. His deep understanding of both the technical and business aspects helped us implement solutions that truly impacted our bottom line.</q><cite><b>Shankarand Jha</b>DGM, Indian Overseas Bank</cite></div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="bgfx grid"></div>
+  <div class="sec-head rv">
+    <h2 class="display">Writing.</h2>
+    <p>Notes on AI, cloud and finance, published on Medium.</p>
+  </div>
+  <div class="posts">
+    <a class="post rv" href="https://jaikushwaha7.medium.com/how-the-term-of-attention-mechanism-was-introduced-and-what-and-why-of-attention-mechanism-90d148625360" target="_blank" rel="noopener"><span class="eyebrow">Deep learning</span><h3>How the term of Attention Mechanism was introduced</h3><span class="more"><i class="fas fa-arrow-right"></i></span></a>
+    <a class="post rv" href="https://jaikushwaha7.medium.com/aws-vs-azure-vs-google-api-comparison-77a0ffe4e3ba" target="_blank" rel="noopener"><span class="eyebrow">Cloud</span><h3>AWS vs Azure vs Google API comparison</h3><span class="more"><i class="fas fa-arrow-right"></i></span></a>
+    <a class="post rv" href="https://jaikushwaha7.medium.com/finance-and-risk-analytics-in-banking-e18a7f65b992" target="_blank" rel="noopener"><span class="eyebrow">Finance</span><h3>Finance and Risk Analytics in Banking</h3><span class="more"><i class="fas fa-arrow-right"></i></span></a>
+  </div>
+</section>
+
+<div id="contact" style="padding:0 12px">
+  <div class="contact rv">
+    <span class="eyebrow" style="color:rgba(255,255,255,.8)">Collaborations &amp; consulting</span>
+    <h2 class="display" style="margin-top:1rem">Let's build something.</h2>
+    <p>Data science projects, risk analytics or a second opinion on your finances. Write to me and I'll reply.</p>
+    <a class="btn dark" href="mailto:jaikushwaha7@gmail.com"><i class="fas fa-envelope"></i> jaikushwaha7@gmail.com</a>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/jai-kushwaha/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/jaikushwaha7" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://jaikushwaha7.medium.com/" target="_blank" rel="noopener" aria-label="Medium"><i class="fab fa-medium-m"></i></a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <span>&copy; <span id="yr"></span> Jai Kushwaha · Since 2010</span>
+  <span><a href="../index.html">Version 1</a> · <a href="../v2/">Version 2</a> · <a href="../consulting.html">Consulting</a></span>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// reveal on scroll (content stays visible if IntersectionObserver never fires)
+(function () {
+  const els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) { document.documentElement.classList.add('no-io'); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+// hero video: scroll-linked transition + play only while visible
+(function () {
+  const wrap = document.querySelector('.hero-wrap'), hero = document.getElementById('hero');
+  const copy = document.getElementById('heroCopy'), term = document.getElementById('term');
+  const video = document.getElementById('heroVideo');
+  if (!wrap || !hero || !video) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  let ticking = false;
+
+  function apply() {
+    ticking = false;
+    if (reduce || innerWidth <= 1000) {
+      hero.style.transform = ''; hero.style.borderRadius = '';
+      hero.style.removeProperty('--vs'); hero.style.removeProperty('--scrim');
+      copy.style.cssText = ''; if (term) term.style.cssText = '';
+      return;
+    }
+    const travel = wrap.offsetHeight - innerHeight;
+    const p = clamp(scrollY / Math.max(travel, 1));
+    const ease = 1 - Math.pow(1 - p, 3);
+    hero.style.transform = 'scale(' + (1 - 0.09 * ease) + ')';
+    hero.style.borderRadius = (28 + 44 * ease) + 'px';
+    hero.style.setProperty('--vs', (1.08 - 0.08 * ease).toFixed(3));
+    hero.style.setProperty('--scrim', (1 - 0.35 * ease).toFixed(3));
+    const fade = clamp(1 - p * 1.35);
+    copy.style.opacity = fade;
+    copy.style.transform = 'translateY(' + (-70 * ease) + 'px) scale(' + (1 - 0.06 * ease) + ')';
+    if (term) { term.style.opacity = fade; term.style.transform = 'translateY(' + (50 * ease) + 'px)'; term.style.pointerEvents = fade < 0.3 ? 'none' : ''; }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(apply); } }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  apply();
+
+  if (reduce) { video.removeAttribute('autoplay'); video.pause(); return; }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es) => es.forEach(e => {
+      if (e.isIntersecting) { const pr = video.play(); if (pr && pr.catch) pr.catch(() => {}); } else video.pause();
+    }), { threshold: 0.05 }).observe(hero);
+  }
+})();
+
+// ID card: flips with scroll position and on hover / tap / keyboard
+(function () {
+  const scene = document.getElementById('idscene'), card = document.getElementById('idcard');
+  if (!scene || !card) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  let hovering = false, locked = false, hover = 0, cur = 0, running = false, visible = true;
+
+  function frame() {
+    const r = scene.getBoundingClientRect(), vh = innerHeight;
+    const p = clamp((vh - r.top) / (vh + r.height), 0, 1);
+    const scrollAng = reduce ? 0 : (p - 0.5) * 220;
+    const hoverTarget = (hovering !== locked) ? 180 : 0;
+    hover += (hoverTarget - hover) * (reduce ? 1 : 0.12);
+    const total = scrollAng + hover;
+    cur += (total - cur) * (reduce ? 1 : 0.2);
+    card.style.setProperty('--ry', cur.toFixed(2) + 'deg');
+    card.style.setProperty('--shine', (50 + Math.sin(cur * Math.PI / 180) * 45).toFixed(1) + '%');
+    if (visible && (Math.abs(total - cur) > 0.05 || Math.abs(hoverTarget - hover) > 0.05)) requestAnimationFrame(frame);
+    else running = false;
+  }
+  function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
+
+  addEventListener('scroll', () => { if (visible) kick(); }, { passive: true });
+  addEventListener('resize', kick);
+  card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hovering = true; kick(); } });
+  card.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hovering = false; kick(); } });
+  card.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse' && !e.target.closest('a')) { locked = !locked; card.setAttribute('aria-pressed', locked); kick(); } });
+  card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); locked = !locked; card.setAttribute('aria-pressed', locked); kick(); } });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es) => es.forEach(e => { visible = e.isIntersecting; if (visible) kick(); }), { rootMargin: '200px' }).observe(scene);
+  }
+  kick();
+})();
+
+// pause background animations for sections that are off-screen
+(function () {
+  const fx = document.querySelectorAll('.bgfx');
+  if (!('IntersectionObserver' in window)) return;
+  fx.forEach(el => el.classList.add('paused'));
+  const host = new IntersectionObserver((es) => es.forEach(e => {
+    e.target.querySelectorAll(':scope > .bgfx').forEach(b => b.classList.toggle('paused', !e.isIntersecting));
+  }), { rootMargin: '150px' });
+  const hosts = new Set(); fx.forEach(b => hosts.add(b.parentElement));
+  hosts.forEach(h => host.observe(h));
+})();
+
+// count-up
+(function () {
+  const nodes = document.querySelectorAll('[data-count]');
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, end = +el.dataset.count, suf = el.dataset.suffix || '';
+      const t0 = performance.now();
+      (function step(t) {
+        const p = Math.min((t - t0) / 1200, 1);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + (p === 1 ? suf : '');
+        if (p < 1) requestAnimationFrame(step);
+      })(t0);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  nodes.forEach(n => io.observe(n));
+})();
+
+// interactive terminal
+(function () {
+  const out = document.getElementById('termOut'), inp = document.getElementById('termIn');
+  if (!out || !inp) return;
+  const cmds = {
+    help: () => 'Commands:\n  <span class="c">about</span>     who I am\n  <span class="c">skills</span>    tools I use\n  <span class="c">projects</span>  selected work\n  <span class="c">bht</span>       where I study\n  <span class="c">contact</span>   get in touch\n  <span class="c">clear</span>     reset',
+    about: () => 'Jai Kushwaha: data scientist, credit-risk analyst and independent financial consultant. 11+ years in banking, analytics and consulting.',
+    skills: () => 'Python · R · SQL · SAS · Teradata\nMachine Learning · Deep Learning · AWS\nCredit Risk · Statistical Analysis · Tableau',
+    projects: () => '<span class="g">→</span> Loan default models (EXL)\n<span class="g">→</span> Recovery forecasting, ₹330M portfolio (IOB)\n<span class="g">→</span> Governance for 8 ML models\nScroll to <span class="c">Selected work</span> for details.',
+    bht: () => 'M.Sc. Data Science, Berliner Hochschule für Technik.\n3rd prize, HERE Hackathon 2025.',
+    contact: () => 'jaikushwaha7@gmail.com\nlinkedin.com/in/jai-kushwaha\ngithub.com/jaikushwaha7',
+    whoami: () => 'a curious data scientist',
+    ls: () => 'practice/  work/  path/  writing/  contact/'
+  };
+  const print = (html) => { out.insertAdjacentHTML('beforeend', html + '\n'); out.scrollTop = out.scrollHeight; };
+  print('<span class="d">Welcome. Type <span class="c">help</span> to begin.</span>');
+  inp.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    const raw = inp.value.trim(); inp.value = '';
+    if (!raw) return;
+    const cmd = raw.toLowerCase();
+    print('<span class="c">$</span> ' + raw.replace(/[<>&]/g, ''));
+    if (cmd === 'clear') { out.innerHTML = ''; return; }
+    print(cmds[cmd] ? cmds[cmd]() : '<span class="d">command not found: ' + cmd.replace(/[<>&]/g, '') + '. Try help.</span>');
+  });
+})();
+</script>
+</body>
+</html>
